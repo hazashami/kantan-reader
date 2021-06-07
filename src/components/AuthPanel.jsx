@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 
 import AppContext from '../context/AppContext';
 
+import layout from '../styles/layout.css';
+
 const AuthPanel = () => {
     const { axiosInstance, mangadexHost } = useContext(AppContext);
 
@@ -31,14 +33,19 @@ const AuthPanel = () => {
 
     return (
         <form className="authPanelForm" onSubmit={ev => {ev.preventDefault()}}>
-            <label className="authLabel">Username:</label>
-            <input name="username" className="authInput" type="text" value={loginInfo["username"]} onChange={handleInputChange} />
-            <label className="authLabel">Password:</label>
-            <input name="password" className="authInput" type="password" value={loginInfo["password"]} onChange={handleInputChange} />
-            <button className="loginButton" onClick={login}>Login</button>
-            <label className="authLabelBearer">Bearer Auth:</label>
-            <input name="bearer" className="authInput" type="text" value={bearer} readOnly={true} placeholder="read only" />
-            <input name="bearerRefresh" className="authInput" type="text" value={bearerRefresh} readOnly={true} placeholder="read only" />
+            <div className="loginPanel">
+                <label className="authLabel">Username:</label>
+                <input className="authInput" name="username" type="text" value={loginInfo["username"]} onChange={handleInputChange} />
+                <label className="authLabel">Password:</label>
+                <input className="authInput" name="password" type="password" value={loginInfo["password"]} onChange={handleInputChange} />
+                <button className="loginButton" onClick={login}>Login</button>
+            </div>
+            <div className="bearerPanel">
+                <label className="authLabelBearer">Bearer Auth:</label>
+                <input className="authInput" name="bearer" type="text" value={bearer} readOnly={true} placeholder="read only" />
+                <label className="authLabelBearerRefresh">Refresh token:</label>
+                <input className="authInput" name="bearerRefresh" type="text" value={bearerRefresh} readOnly={true} placeholder="read only" />
+            </div>
         </form>
     )
 }

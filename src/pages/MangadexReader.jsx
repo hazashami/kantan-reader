@@ -10,18 +10,6 @@ import layout from '../styles/layout.css';
 const MangadexReader = () => {
     const { axiosInstance } = useContext(AppContext);
 
-    const pingTest = () => {
-        alert('ping');
-        // axiosInstance.get("/")
-        // .then((thing) => {
-        //     console.log("we got the thing");
-        //     console.log(thing);
-        // })
-        // .catch((err) => {
-        //     console.err(err);
-        // });
-    }
-
     return (
         <div id="rootPane" className="rootPane">
             <div id="topPane" className="topPane">
@@ -35,7 +23,6 @@ const MangadexReader = () => {
                     <Reader />
                 </div>
             </div>
-            <button onClick={pingTest} />
         </div>
     );
 }

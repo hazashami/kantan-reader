@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* MangadexReader */
+
 .rootPane {
     display: flex;
     height: auto;
+    width: auto;
     flex-direction: column;
 }
 
@@ -26,3 +35,38 @@
     display: flex;
     flex-grow: 11;
 }
+
+/* AuthPanel */
+
+.authPanelForm {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.loginPanel {
+
+}
+
+.bearerPanel {
+
+}
+
+.authLabel {
+    margin: 1em;
+    margin-right: 0em;
+}
+
+.authInput {
+    margin: 1em;
+}
+
+.loginButton {
+    margin: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+/* Navigator */
+
+/* Reader */

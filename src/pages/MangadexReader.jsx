@@ -10,7 +10,6 @@ const MangadexReader = () => {
     const [ bearer, setBearer ] = useState('');
     const [ refresh, setRefresh ] = useState('');
 
-
     return (
         <div id="rootPane" className="rootPane">
             <div id="topPane" className="topPane">

@@ -67,6 +67,12 @@ body {
     flex-direction: column;
 }
 
+.metadata {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+}
+
 /* Reader */
 
 .reader {

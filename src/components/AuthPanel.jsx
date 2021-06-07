@@ -4,15 +4,13 @@ import AppContext from '../context/AppContext';
 
 import layout from '../styles/layout.css';
 
-const AuthPanel = () => {
+const AuthPanel = ({ bearer, setBearer, refresh, setRefresh }) => {
     const { axiosInstance, mangadexHost } = useContext(AppContext);
 
     const [ loginInfo, setLoginInfo ] = useState({
         "username": '',
         "password": ''
     });
-    const [ bearer, setBearer ] = useState('');
-    const [ bearerRefresh, setBearerRefresh ] = useState('');
 
     const handleInputChange = (event) => {
         if (event.target instanceof HTMLInputElement) {
@@ -24,7 +22,7 @@ const AuthPanel = () => {
         axiosInstance.post(mangadexHost + "/auth/login", loginInfo)
         .then((response) => {
             setBearer(response.data.token.session);
-            setBearerRefresh(response.data.token.refresh);
+            setRefresh(response.data.token.refresh);
         })
         .catch((err) => {
             alert(err.message);
@@ -43,8 +41,8 @@ const AuthPanel = () => {
             <div className="bearerPanel">
                 <label className="authLabelBearer">Bearer Auth:</label>
                 <input className="authInput" name="bearer" type="text" value={bearer} readOnly={true} placeholder="read only" />
-                <label className="authLabelBearerRefresh">Refresh token:</label>
-                <input className="authInput" name="bearerRefresh" type="text" value={bearerRefresh} readOnly={true} placeholder="read only" />
+                <label className="authLabelRefresh">Refresh token:</label>
+                <input className="authInput" name="refresh" type="text" value={refresh} readOnly={true} placeholder="read only" />
             </div>
         </form>
     )

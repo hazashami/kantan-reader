@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 
-import AppContext from '../context/AppContext';
 import AuthPanel from '../components/AuthPanel';
 import Navigator from '../components/Navigator';
 import Reader from '../components/Reader';
@@ -8,12 +7,13 @@ import Reader from '../components/Reader';
 import layout from '../styles/layout.css';
 
 const MangadexReader = () => {
-    const { axiosInstance } = useContext(AppContext);
+    const [ bearer, setBearer ] = useState('');
+    const [ refresh, setRefresh ] = useState('');
 
     return (
         <div id="rootPane" className="rootPane">
             <div id="topPane" className="topPane">
-                <AuthPanel />
+                <AuthPanel bearer={bearer} setBearer={setBearer} refresh={refresh} setRefresh={setRefresh}/>
             </div>
             <div id="bottomPane" className="bottomPane">
                 <div id="navigator" className="navigator">

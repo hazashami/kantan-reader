@@ -62,11 +62,21 @@ body {
 
 /* Navigator */
 
+.search {
+    display: flex;
+    flex-direction: column;
+}
+
 /* Reader */
 
 .reader {
     display: flex;
     justify-content: space-between;
+}
+
+.params, .advancedParams {
+    display: flex;
+    flex-direction: column;
 }
 
 /* Arrow */

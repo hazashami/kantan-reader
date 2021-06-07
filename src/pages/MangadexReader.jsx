@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
 import AuthPanel from '../components/AuthPanel';
-import Navigator from '../components/Navigator';
-import Reader from '../components/Reader';
+import Navigator from '../components/navigator/Navigator';
+import Reader from '../components/reader/Reader';
 
 import layout from '../styles/layout.css';
 
 const MangadexReader = () => {
     const [ bearer, setBearer ] = useState('');
     const [ refresh, setRefresh ] = useState('');
+
 
     return (
         <div id="rootPane" className="rootPane">
@@ -17,7 +18,7 @@ const MangadexReader = () => {
             </div>
             <div id="bottomPane" className="bottomPane">
                 <div id="navigator" className="navigator">
-                    <Navigator />
+                    <Navigator bearer={bearer}/>
                 </div>
                 <div id="reader" className="reader">
                     <Reader />

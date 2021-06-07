@@ -8,7 +8,7 @@ body {
 
 .rootPane {
     display: flex;
-    height: auto;
+    height: 100vh;
     width: auto;
     flex-direction: column;
 }
@@ -16,14 +16,15 @@ body {
 .topPane {
     display: flex;
     flex-direction: row;
-    height: 100px;
+    height: 40px;
 }
 
 .bottomPane {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
-    height: auto;
+    height: calc(100vh - 40px);
+    margin: 1em;
 }
 
 .navigator {
@@ -44,14 +45,6 @@ body {
     width: 100%;
 }
 
-.loginPanel {
-
-}
-
-.bearerPanel {
-
-}
-
 .authLabel {
     margin: 1em;
     margin-right: 0em;
@@ -70,3 +63,27 @@ body {
 /* Navigator */
 
 /* Reader */
+
+.reader {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Arrow */
+
+.arrow {
+    display: flex;
+    margin-left: 1em;
+    margin-right: 1em;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Page */
+
+.page {
+    display: flex;
+    flex-grow: 11;
+    justify-content: center;
+}

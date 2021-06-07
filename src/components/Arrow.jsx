@@ -3,7 +3,7 @@ import React from 'react';
 const Arrow = () => {
     const arrow = "-> <-";
     return (
-        <div>
+        <div className="arrow">
             {arrow}
         </div>
     )

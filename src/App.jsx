@@ -1,16 +1,16 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
+import axios from 'axios';
 
-import Arrow from './components/Arrow';
+import MangadexReader from './pages/MangadexReader';
 
 const App = () => {
-    const title = "now with hotloading";
+    const axiosInstance = axios.create();
 
     return (
-        <div>
-            {title}
-            <Arrow />
-        </div>
+        <>
+            <MangadexReader />
+        </>
         
     )
 }

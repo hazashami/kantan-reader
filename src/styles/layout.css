@@ -1,0 +1,28 @@
+.rootPane {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+}
+
+.topPane {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+}
+
+.bottomPane {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    height: auto;
+}
+
+.navigator {
+    display: flex;
+    flex-grow: 1;
+}
+
+.reader {
+    display: flex;
+    flex-grow: 11;
+}

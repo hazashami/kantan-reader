@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import AppContext from '../context/AppContext';
 import AuthPanel from '../components/AuthPanel';
 import Navigator from '../components/Navigator';
 import Reader from '../components/Reader';
@@ -7,6 +8,19 @@ import Reader from '../components/Reader';
 import layout from '../styles/layout.css';
 
 const MangadexReader = () => {
+    const { axiosInstance } = useContext(AppContext);
+
+    const pingTest = () => {
+        axiosInstance.get("/")
+        .then((thing) => {
+            console.log("we got the thing");
+            console.log(thing);
+        })
+        .catch((err) => {
+            console.err(err);
+        });
+    }
+
     return (
         <div id="rootPane" className="rootPane">
             <div id="topPane" className="topPane">
@@ -20,6 +34,7 @@ const MangadexReader = () => {
                     <Reader />
                 </div>
             </div>
+            <button onClick={pingTest} />
         </div>
     );
 }

@@ -1,9 +1,5 @@
-const AppContext = (axiosParam) => {
-    const axiosInstance = axiosParam
+import { createContext } from 'react';
 
-    return {
-        axiosInstance
-    }
-}
+const AppContext = createContext();
 
 export default AppContext;

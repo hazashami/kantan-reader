@@ -11,14 +11,15 @@ const MangadexReader = () => {
     const { axiosInstance } = useContext(AppContext);
 
     const pingTest = () => {
-        axiosInstance.get("/")
-        .then((thing) => {
-            console.log("we got the thing");
-            console.log(thing);
-        })
-        .catch((err) => {
-            console.err(err);
-        });
+        alert('ping');
+        // axiosInstance.get("/")
+        // .then((thing) => {
+        //     console.log("we got the thing");
+        //     console.log(thing);
+        // })
+        // .catch((err) => {
+        //     console.err(err);
+        // });
     }
 
     return (

@@ -9,6 +9,9 @@ import layout from '../styles/layout.css';
 const MangadexReader = () => {
     const [ bearer, setBearer ] = useState('');
     const [ refresh, setRefresh ] = useState('');
+    const [ viewedChapterId, setViewedChapterId ] = useState('');
+
+    //todo: add bearer to axios interceptor
 
     return (
         <div id="rootPane" className="rootPane">
@@ -17,10 +20,10 @@ const MangadexReader = () => {
             </div>
             <div id="bottomPane" className="bottomPane">
                 <div id="navigator" className="navigator">
-                    <Navigator bearer={bearer}/>
+                    <Navigator bearer={bearer} setViewedChapterId={setViewedChapterId}/>
                 </div>
                 <div id="reader" className="reader">
-                    <Reader />
+                    <Reader bearer={bearer} viewedChapterId={viewedChapterId}/>
                 </div>
             </div>
         </div>

@@ -62,15 +62,44 @@ body {
 
 /* Navigator */
 
+/* Search */
+
 .search {
     display: flex;
     flex-direction: column;
 }
 
+/* Metadata */
+
 .metadata {
     display: flex;
     flex-direction: column;
     padding-top: 1em;
+}
+
+.mangaList {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+}
+
+.titleLink {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 12px;
+}
+
+.chapterList {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+}
+
+.chapterLink {
+    margin-left: 1em;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 10px;
 }
 
 /* Reader */

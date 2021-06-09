@@ -83,7 +83,6 @@ const Search = ({bearer, setMangaList}) => {
         }
         axiosInstance.get(mangadexHost + "/manga" + buildSearch(), auth)
         .then((response) => {
-            console.log(response.data.results);
             setMangaList(response.data.results);
         })
         .catch((err) => console.error(err.message));

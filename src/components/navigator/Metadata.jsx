@@ -4,40 +4,67 @@ import AppContext from '../../context/AppContext';
 
 import layout from '../../styles/layout.css';
 
-const Metadata = (mangaList) => {
+const Metadata = ({ mangaList, setViewedChapterId }) => {
     const { axiosInstance, mangadexHost } = useContext(AppContext);
-    const [ readableList, setReadableList ] = useState([{}]);
+    const [ chapterList, setChapterList ] = useState([]);
 
     useEffect(() => {
-        buildList();
+        renderList();
     }, [mangaList]);
-
-    const buildList = () => {
-        //todo: fix the nested object
-        if (mangaList && mangaList.mangaList && mangaList.mangaList.length > 0) {
-            Object.keys(mangaList.mangaList).map(mangaTitle => {
-                console.log(mangaList.mangaList[mangaTitle]);
-                setReadableList(readableList => [...readableList, {"title": mangaList.mangaList[mangaTitle].data.attributes.title.en, "id": mangaList.mangaList[mangaTitle].data.id}]);
-            });
-        }
-    }
 
     const renderList = () => {
         return(
-            Object.keys(readableList).map(entry => {
-                return <div className="titleLink" key={readableList[entry].title} onClick={handleLink(readableList[entry].id)}>{readableList[entry].title}</div>
+            Object.keys(mangaList).map(entry => {
+                return <a className="titleLink" key={mangaList[entry].data.id} href="#"
+                        onClick={() => handleTitleClick(mangaList[entry].data.id)}>{mangaList[entry].data.attributes.title.en}</a>
             })
         );
     }
 
-    const handleLink = (id) => {
-        console.log("handleLink");
-        console.log(id);
+    const renderChapters = () => {
+        console.log(setViewedChapterId);
+        return(
+            Object.keys(chapterList).map(entry => {
+                return( 
+                    <a className="chapterLink" key={chapterList[entry].data.id} href="#"
+                            onClick={() => setViewedChapterId(chapterList[entry].data.id)}>
+                        {buildChapterString(chapterList[entry])}
+                    </a>
+                );
+            })
+        );
     }
 
+    const buildChapterString = (chapter) => {
+        const vol = "vol" + chapter.data.attributes.volume;
+        const ch = "ch" + chapter.data.attributes.chapter;
+        const title = chapter.data.attributes.title;
+        const lang = '(' + chapter.data.attributes.translatedLanguage + ')';
+        return vol + ch + ": " + title + " " + lang;
+    }
+
+    const handleTitleClick = (id) => {
+        //todo: pagination
+        // mangadexHost + "/chapter?manga={id}&limit={limit}&offset={offset * limit}"
+        axiosInstance.get(mangadexHost + "/chapter?limit=10&manga=" + id)
+        .then((response) => {
+            console.log(response);
+            setChapterList(response.data.results);
+        })
+        .catch((err) => console.error(err.message));
+    }
+
+    //todo: one of the following
+    //chapterList as child of mangaList title
+    //or mangaList reduced to one after chapterList selected < this is easier, let's do this
     return (
         <div className="metadata">
-            {readableList.length > 0 ? renderList() : <> </>}
+            <div className="mangaList">
+                {mangaList.length > 0 ? renderList() : <> </>}
+            </div>
+            <div className="chapterList">
+                {chapterList.length > 0 ? renderChapters() : <> </>}
+            </div>
         </div>
     )
 }

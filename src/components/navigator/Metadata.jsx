@@ -21,6 +21,38 @@ const Metadata = ({ mangaList, setViewedChapterId }) => {
         );
     }
 
+    //probably need to visit /manga/{id}/aggregate to get volumes list first
+    /*
+        get manga/{id}/aggregate
+        response.data = {
+            volumes {
+                1 : {
+                    count: 21,
+                    chapters: {
+                        1: {
+                            chapter: 1
+                            count: 1 <- ?
+                        }
+                    }
+                }
+                ...
+                N/A: {
+                    count: 6,
+                    chapters: {
+                        70: {
+                            chapter: 70
+                            count: 1
+                        }
+                    }
+                }
+            }
+        }
+
+        go backwards thru this ordered object, starting with N/A. 
+            build csv of chapter strings and go all the way thru until <limit>
+            use /chapter?manga={id}&chapter[]={chapterCSV}&limit={limit}
+        not too bad
+    */
     const renderChapters = () => {
         console.log(setViewedChapterId);
         return(

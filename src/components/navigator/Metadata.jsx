@@ -54,7 +54,6 @@ const Metadata = ({ mangaList, setViewedChapterId }) => {
         not too bad
     */
     const renderChapters = () => {
-        console.log(setViewedChapterId);
         return(
             Object.keys(chapterList).map(entry => {
                 return( 
@@ -76,14 +75,46 @@ const Metadata = ({ mangaList, setViewedChapterId }) => {
     }
 
     const handleTitleClick = (id) => {
-        //todo: pagination
-        // mangadexHost + "/chapter?manga={id}&limit={limit}&offset={offset * limit}"
-        axiosInstance.get(mangadexHost + "/chapter?limit=10&manga=" + id)
+        axiosInstance.get(mangadexHost + "/manga/" + id + "/aggregate")
         .then((response) => {
-            console.log(response);
-            setChapterList(response.data.results);
+            //good to hold onto this perhaps. why not grab all volumes. just have carats tos how chapters
+            const chapterCSV = processAggregateList(response.data.volumes);
+            console.log(chapterCSV);
+            axiosInstance.get(mangadexHost + "/chapter?&manga=" + id + chapterCSV + "&limit=50")
+            .then((response) => {
+                console.log(response.data);
+            })
         })
-        .catch((err) => console.error(err.message));
+    }
+
+    const processAggregateList = (volumes) => {
+        let limit = 50;
+        let chapterCSV = "";
+        const volumesList = Object.keys(volumes);
+        sortDescending(volumesList);
+        for (const volume of volumesList) {
+            //todo: update this var name. ew
+            const chList = Object.keys(volumes[volume].chapters);
+            sortDescending(chList);
+            console.log("chList");
+            console.log(chList);
+            for (const ch of chList) {
+                if (--limit <= 0) {
+                    break;
+                }
+                chapterCSV += "&chapter[]=" + volumes[volume].chapters[ch].chapter
+            }
+        }
+        console.log(limit);
+        return chapterCSV.slice(0, chapterCSV.length - 1);
+    }
+
+    const sortDescending = (array) => {
+        array.sort(function(a, b) {
+            if (a === "N/A") return -1;
+            if (b === "N/A") return -1;
+            return parseInt(b) - parseInt(a);
+        })
     }
 
     //todo: one of the following

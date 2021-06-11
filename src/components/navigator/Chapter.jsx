@@ -8,7 +8,7 @@ const Chapter = ({chapterInfo, setViewedChapterId}) => {
     const { axiosInstance, mangadexHost } = useContext(AppContext);
 
     const buildChapterString = () => {
-        return chapterInfo.chapter + " myu";
+        return chapterInfo + " myu";
     }
 
     

@@ -29,31 +29,32 @@ const Volume = ({activeId, volumeInfo, setViewedChapterId}) => {
         console.log(volumeInfo);
         setIsOpen(!isOpen);
         if (activeId !== '' && chapterLinks !== undefined && isLoaded === false) {
-            let api = mangadexHost + "/chapter?manga=" + activeId + buildChapterCSV(volumeInfo.chapters);
-            console.log(api);
-            axiosInstance.get(api)
+            axiosInstance.get(mangadexHost + "/chapter?manga=" + activeId + buildChapterQuery(volumeInfo.chapters))
             .then((response) => {
                 console.log(response.data);
                 setIsLoaded(true);
-                //chapterLinks
+                //populate chapterLinks from here
             })
             .catch((err) => console.error(err.message));
         }
     }
 
-    const buildChapterCSV = (chapters) => {
+    const buildChapterQuery = (chapters) => {
+        let count = 0;
         let csv = "";
         Object.keys(chapters).map(chapter => {
-            csv += "&chapter[]=" + chapters[chapter].chapter
+            csv += "&chapter[]=" + chapters[chapter].chapter;
+            count++;
         })
-        return csv;
+        return csv + "&limit=" + count;
     }
 
+    //update chapterInfo to be chapterLinks material instead
     const renderChapters = () => {
         return(
             Object.keys(volumeInfo.chapters).map(chapter => {
                 return(
-                    <Chapter key={"chapter" + volumeInfo.chapters[chapter]} chapterInfo={chapter} setViewedChapterId={setViewedChapterId} />
+                    <Chapter key={"chapter" + volumeInfo.chapters[chapter].chapter} chapterInfo={chapter} setViewedChapterId={setViewedChapterId} />
                 )
             })
         )

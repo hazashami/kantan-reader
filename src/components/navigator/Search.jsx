@@ -78,6 +78,7 @@ const Search = ({bearer, setMangaList}) => {
     }
 
     const submitSearch = () => {
+        //todo: put this on an interceptor
         const auth = {
             headers: { Authorization: `Bearer ${bearer}`}
         }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Metadata from './Metadata';
+import MangaList from './MangaList';
 import Search from './Search';
 
 const Navigator = ({ bearer, setViewedChapterId }) => {
@@ -9,7 +9,7 @@ const Navigator = ({ bearer, setViewedChapterId }) => {
     return (
         <div>
             <Search bearer={bearer} setMangaList={setMangaList} />
-            <Metadata mangaList={mangaList} setViewedChapterId={setViewedChapterId} />
+            <MangaList mangaList={mangaList} setViewedChapterId={setViewedChapterId} />
         </div>
     )
 }

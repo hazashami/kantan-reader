@@ -1,24 +1,17 @@
-import React, { useContext } from 'react';
-
-import AppContext from '../../context/AppContext';
+import React from 'react';
 
 import layout from '../../styles/layout.css';
 
-const Chapter = ({chapterInfo, setViewedChapterId}) => {
-    const { axiosInstance, mangadexHost } = useContext(AppContext);
+const Chapter = ({chapterInfo, setViewedChapter}) => {
 
     const buildChapterString = () => {
-        return chapterInfo + " myu";
+        return "ch." + chapterInfo.attributes.chapter + ": "
+                + chapterInfo.attributes.title + " (" + chapterInfo.attributes.translatedLanguage + ")";
     }
 
-    
-    // const buildChapterString = () => {
-    //     const vol = "vol" + chapter.data.attributes.volume;
-    //     const ch = "ch" + chapter.data.attributes.chapter;
-    //     const title = chapter.data.attributes.title;
-    //     const lang = '(' + chapter.data.attributes.translatedLanguage + ')';
-    //     return vol + ch + ": " + title + " " + lang;
-    // }
+    const handleChapterClick = () => {
+        setViewedChapter(chapterInfo.attributes.data);
+    }
 
     return (
         <div className="chapter" >

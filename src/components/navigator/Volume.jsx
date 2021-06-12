@@ -5,35 +5,30 @@ import Chapter from './Chapter';
 
 import layout from '../../styles/layout.css';
 
-const Volume = ({activeId, volumeInfo, setViewedChapterId}) => {
+const Volume = ({activeId, volumeInfo, setViewedChapter}) => {
     const { axiosInstance, mangadexHost } = useContext(AppContext);
     const [ isOpen, setIsOpen ] = useState(false);
     const [ isLoaded, setIsLoaded ] = useState(false);
-    const [ chapterLinks, setChapterLinks ] = useState([]); 
-    // chapterId: <1, 2, 70, 70.1, etc>, 
-    // chapterLink
-    // chapterName
-    // chapterLang
+    const [ chapterInfo, setChapterInfo ] = useState();
 
     const renderVolumeInfo = () => {
         return(
             <span className="titleLink" onClick={() => handleVolumeClick()}>
-                Volume.{volumeInfo.volume} { isOpen ? 'V' : '>' }
-                { isOpen ? renderChapters() : <> </> }
+                Volume.{volumeInfo.volume} { isOpen ? 'v' : '>' }
+                { isOpen && isLoaded ? renderChapters() : <> </> }
             </span>
         )
     }
 
     const handleVolumeClick = () => {
-        console.log("handleVolumeclick");
-        console.log(volumeInfo);
         setIsOpen(!isOpen);
-        if (activeId !== '' && chapterLinks !== undefined && isLoaded === false) {
+        console.log("handleVolumeClick");
+        console.log(activeId);
+        if (activeId !== '' && chapterInfo === undefined && isLoaded === false) {
             axiosInstance.get(mangadexHost + "/chapter?manga=" + activeId + buildChapterQuery(volumeInfo.chapters))
             .then((response) => {
-                console.log(response.data);
                 setIsLoaded(true);
-                //populate chapterLinks from here
+                setChapterInfo(response.data.results);
             })
             .catch((err) => console.error(err.message));
         }
@@ -49,14 +44,17 @@ const Volume = ({activeId, volumeInfo, setViewedChapterId}) => {
         return csv + "&limit=" + count;
     }
 
-    //update chapterInfo to be chapterLinks material instead
     const renderChapters = () => {
-        return(
-            Object.keys(volumeInfo.chapters).map(chapter => {
-                return(
-                    <Chapter key={"chapter" + volumeInfo.chapters[chapter].chapter} chapterInfo={chapter} setViewedChapterId={setViewedChapterId} />
-                )
-            })
+        return( chapterInfo ?
+            <div className="chapterContainer">
+                {Object.keys(chapterInfo).map(chapter => {
+                    return(
+                        <Chapter key={"chapter-" + chapterInfo[chapter].data.id} 
+                            chapterInfo={chapterInfo[chapter].data} setViewedChapter={setViewedChapter} />
+                    )
+                })}
+            </div>
+            : <></>
         )
     }
 

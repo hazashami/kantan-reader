@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Page = () => {
+
+
+const Page = ({viewedPage}) => {
     
     return (
         <div className="page">
-            page
+            { viewedPage ? viewedPage : "nothin here yet!"}
         </div>
     )
 }

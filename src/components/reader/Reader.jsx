@@ -1,24 +1,21 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import AppContext from '../../context/AppContext';
 import Arrow from './Arrow';
 import Page from './Page';
 
-const Reader = ({bearer, viewedChapterId}) => {
+const Reader = ({bearer, viewedChapter}) => {
     const { axiosInstance } = useContext(AppContext);
+    const [ activePage, setActivePage ] = useState('');
 
     useEffect(() => {
-        loadChapter();
-    }, [viewedChapterId])
-
-    const loadChapter = () => {
-        console.log("loadChapter: " + viewedChapterId);
-    }
+        setActivePage(viewedChapter[0]);
+    }, [viewedChapter]);
 
     return (
         <div className="reader">
             <Arrow />
-            <Page />
+            <Page viewedPage={activePage} />
             <Arrow />
         </div>
     )

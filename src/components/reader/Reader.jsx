@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
+import AppContext from '../../context/AppContext';
 import useKeyHook from '../../hooks/useKeyHook';
 import Page from './Page';
 
@@ -7,9 +8,19 @@ const LEFT = -1;
 const RIGHT = 1;
 
 const Reader = ({bearer, viewedChapter, viewedChapterHash}) => {
+    const { mangadexImgServer } = useContext(AppContext);
     const [ currentPage, setCurrentPage ] = useState(0);
+    const [ imgSet, setImgSet ] = useState([]);
     const leftPress = useKeyHook("ArrowLeft");
     const rightPress = useKeyHook("ArrowRight");
+
+    useEffect(() => {
+        setImgSet(
+            Object.keys(viewedChapter).map(page => {
+                return <img src={mangadexImgServer + "/data/" + viewedChapterHash + "/" + viewedChapter[page]} />
+            })
+        );
+    }, [viewedChapter]);
 
     useEffect(() => {
         if (leftPress) {
@@ -36,7 +47,9 @@ const Reader = ({bearer, viewedChapter, viewedChapterHash}) => {
     return (
         <div className="reader">
             <div className="arrow" onClick={() => handleClick(LEFT)}>←</div>
-            <Page viewedPage={viewedChapter[currentPage]} viewedChapterHash={viewedChapterHash}/>
+            <div className="page">
+                {imgSet[currentPage]}
+            </div>
             <div className="arrow" onClick={() => handleClick(RIGHT)}>→</div>
             <div className="progress">[ {currentPage + 1} / {viewedChapter.length + 1} ]</div>
         </div>

@@ -6,7 +6,8 @@ const Page = ({viewedPage, viewedChapterHash}) => {
     const { mangadexImgServer } = useContext(AppContext);
     
     const loadPageImage = () => {
-        return <img src={mangadexImgServer + "/data/" + viewedChapterHash + "/" + viewedPage} />
+        console.log("loadPageImage: " + mangadexImgServer + "/data/" + viewedChapterHash + "/" + viewedPage);
+        // return <img src={mangadexImgServer + "/data/" + viewedChapterHash + "/" + viewedPage} />
     }
 
     return (

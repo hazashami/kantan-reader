@@ -1,22 +1,25 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import AppContext from '../../context/AppContext';
-import Arrow from './Arrow';
 import Page from './Page';
 
-const Reader = ({bearer, viewedChapter, viewedChapterHash}) => {
-    const { axiosInstance } = useContext(AppContext);
-    const [ activePage, setActivePage ] = useState('');
+const LEFT = -1;
+const RIGHT = 1;
 
-    useEffect(() => {
-        setActivePage(viewedChapter[0]);
-    }, [viewedChapter]);
+const Reader = ({bearer, viewedChapter, viewedChapterHash}) => {
+    const [ currentPage, setCurrentPage ] = useState(0);
+
+    const handleClick = (direction) => {
+        if (currentPage + direction <= viewedChapter.length || currentPage + direction >= 0) {
+            setCurrentPage(currentPage + direction);
+        }
+    }
 
     return (
         <div className="reader">
-            <Arrow />
-            <Page viewedPage={activePage} viewedChapterHash={viewedChapterHash}/>
-            <Arrow />
+            <div className="arrow" onClick={() => handleClick(LEFT)}>←</div>
+            <Page viewedPage={viewedChapter[currentPage]} viewedChapterHash={viewedChapterHash}/>
+            <div className="arrow" onClick={() => handleClick(RIGHT)}>→</div>
+            <div className="progress">[ {currentPage + 1} / {viewedChapter.length + 1} ]</div>
         </div>
     )
 }

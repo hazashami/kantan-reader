@@ -120,11 +120,12 @@ body {
 
 .arrow {
     display: flex;
-    margin-left: 1em;
-    margin-right: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
     flex-grow: 1;
     flex-direction: column;
     justify-content: center;
+    background-color: lightslategrey;
 }
 
 /* Page */
@@ -133,4 +134,9 @@ body {
     display: flex;
     flex-grow: 11;
     justify-content: center;
+}
+
+img {
+    max-width: 100%;
+    overflow: hidden;
 }

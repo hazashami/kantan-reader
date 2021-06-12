@@ -5,7 +5,7 @@ import AppContext from '../context/AppContext';
 import layout from '../styles/layout.css';
 
 const AuthPanel = ({ bearer, setBearer, refresh, setRefresh }) => {
-    const { axiosInstance, mangadexHost } = useContext(AppContext);
+    const { axiosInstance, mangadexApi } = useContext(AppContext);
 
     const [ loginInfo, setLoginInfo ] = useState({
         "username": '',
@@ -19,7 +19,7 @@ const AuthPanel = ({ bearer, setBearer, refresh, setRefresh }) => {
     }
 
     const login = () => {
-        axiosInstance.post(mangadexHost + "/auth/login", loginInfo)
+        axiosInstance.post(mangadexApi + "/auth/login", loginInfo)
         .then((response) => {
             setBearer(response.data.token.session);
             setRefresh(response.data.token.refresh);

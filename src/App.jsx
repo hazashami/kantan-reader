@@ -7,12 +7,13 @@ import AppContext from './context/AppContext';
 
 const App = () => {
     const axiosInstance = axios.create();
-    const mangadexHost = "https://api.mangadex.org"
+    const mangadexApi = "https://api.mangadex.org"
+    const mangadexImgServer = "https://uploads.mangadex.org"
 
     return (
-        <AppContext.Provider value={{axiosInstance: axiosInstance, mangadexHost: mangadexHost}}>
+        <AppContext.Provider value={{axiosInstance: axiosInstance, mangadexApi: mangadexApi, mangadexImgServer: mangadexImgServer}}>
             <MangadexReader />
-        </AppContext.Provider>   
+        </AppContext.Provider>
     )
 }
 

@@ -5,7 +5,7 @@ import AppContext from '../../context/AppContext';
 import layout from '../../styles/layout.css';
 
 const Search = ({bearer, setMangaList}) => {
-    const { axiosInstance, mangadexHost } = useContext(AppContext);
+    const { axiosInstance, mangadexApi } = useContext(AppContext);
 
     const [ isAdvanced, setIsAdvanced ] = useState(false);
     const [ searchStrings, setSearchStrings ] = useState({
@@ -82,7 +82,7 @@ const Search = ({bearer, setMangaList}) => {
         const auth = {
             headers: { Authorization: `Bearer ${bearer}`}
         }
-        axiosInstance.get(mangadexHost + "/manga" + buildSearch(), auth)
+        axiosInstance.get(mangadexApi + "/manga" + buildSearch(), auth)
         .then((response) => {
             setMangaList(response.data.results);
         })

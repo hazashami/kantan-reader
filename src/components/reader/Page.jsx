@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import AppContext from '../../context/AppContext';
 
-
-const Page = ({viewedPage}) => {
+const Page = ({viewedPage, viewedChapterHash}) => {
+    const { mangadexImgServer } = useContext(AppContext);
     
+    const loadPageImage = () => {
+        return <img src={mangadexImgServer + "/data/" + viewedChapterHash + "/" + viewedPage} />
+    }
+
     return (
         <div className="page">
-            { viewedPage ? viewedPage : "nothin here yet!"}
+            { viewedPage ? loadPageImage() : "cressedexreader" }
         </div>
     )
 }

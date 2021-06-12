@@ -5,8 +5,8 @@ import Volume from './Volume';
 
 import layout from '../../styles/layout.css';
 
-const MangaList = ({ mangaList, setViewedChapter }) => {
-    const { axiosInstance, mangadexHost } = useContext(AppContext);
+const MangaList = ({mangaList, setViewedChapter, setViewedChapterHash}) => {
+    const { axiosInstance, mangadexApi } = useContext(AppContext);
     const [ aggregate, setAggregate ] = useState();
     //todo: figure out a cleaner way to manage this. the one:many situation is too much for my brain right now
     const [ activeTitleId, setActiveTitleId ] = useState();
@@ -30,7 +30,7 @@ const MangaList = ({ mangaList, setViewedChapter }) => {
 
     //todo: need isOpen for active volumes
     const handleTitleClick = (id) => {
-        axiosInstance.get(mangadexHost + "/manga/" + id + "/aggregate")
+        axiosInstance.get(mangadexApi + "/manga/" + id + "/aggregate")
         .then((response) => {
             setAggregate(response.data.volumes);
             setActiveTitleId(id);
@@ -42,8 +42,8 @@ const MangaList = ({ mangaList, setViewedChapter }) => {
         return(
             Object.keys(aggregate).map(volume => {
                 return(
-                    <Volume key={"volume" + aggregate[volume].volume} activeId={activeTitleId} 
-                            volumeInfo={aggregate[volume]} setViewedChapter={setViewedChapter} />
+                    <Volume key={"volume" + aggregate[volume].volume} activeId={activeTitleId} volumeInfo={aggregate[volume]} 
+                    setViewedChapter={setViewedChapter} setViewedChapterHash={setViewedChapterHash} />
                 );
             })
         )

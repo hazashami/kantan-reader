@@ -5,8 +5,8 @@ import Chapter from './Chapter';
 
 import layout from '../../styles/layout.css';
 
-const Volume = ({activeId, volumeInfo, setViewedChapter}) => {
-    const { axiosInstance, mangadexHost } = useContext(AppContext);
+const Volume = ({activeId, volumeInfo, setViewedChapter, setViewedChapterHash}) => {
+    const { axiosInstance, mangadexApi } = useContext(AppContext);
     const [ isOpen, setIsOpen ] = useState(false);
     const [ isLoaded, setIsLoaded ] = useState(false);
     const [ chapterInfo, setChapterInfo ] = useState();
@@ -22,10 +22,8 @@ const Volume = ({activeId, volumeInfo, setViewedChapter}) => {
 
     const handleVolumeClick = () => {
         setIsOpen(!isOpen);
-        console.log("handleVolumeClick");
-        console.log(activeId);
         if (activeId !== '' && chapterInfo === undefined && isLoaded === false) {
-            axiosInstance.get(mangadexHost + "/chapter?manga=" + activeId + buildChapterQuery(volumeInfo.chapters))
+            axiosInstance.get(mangadexApi + "/chapter?manga=" + activeId + buildChapterQuery(volumeInfo.chapters))
             .then((response) => {
                 setIsLoaded(true);
                 setChapterInfo(response.data.results);
@@ -49,8 +47,8 @@ const Volume = ({activeId, volumeInfo, setViewedChapter}) => {
             <div className="chapterContainer">
                 {Object.keys(chapterInfo).map(chapter => {
                     return(
-                        <Chapter key={"chapter-" + chapterInfo[chapter].data.id} 
-                            chapterInfo={chapterInfo[chapter].data} setViewedChapter={setViewedChapter} />
+                        <Chapter key={"chapter-" + chapterInfo[chapter].data.id} chapterInfo={chapterInfo[chapter].data} 
+                        setViewedChapter={setViewedChapter} setViewedChapterHash={setViewedChapterHash} />
                     )
                 })}
             </div>

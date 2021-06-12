@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import layout from '../../styles/layout.css';
 
-const Chapter = ({chapterInfo, setViewedChapter}) => {
+const Chapter = ({chapterInfo, setViewedChapter, setViewedChapterHash}) => {
 
     const buildChapterString = () => {
         return "ch." + chapterInfo.attributes.chapter + ": "
@@ -11,12 +11,13 @@ const Chapter = ({chapterInfo, setViewedChapter}) => {
 
     const handleChapterClick = () => {
         setViewedChapter(chapterInfo.attributes.data);
+        setViewedChapterHash(chapterInfo.attributes.hash);
     }
 
     return (
         <div className="chapter" >
             { chapterInfo ? 
-                <span className="titleLink" onClick={() => handleChapterClick()}>
+                <span className="titleLink" onClick={handleChapterClick}>
                     {buildChapterString()}
                 </span> :
                 <></>

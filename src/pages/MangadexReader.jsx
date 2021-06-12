@@ -10,6 +10,7 @@ const MangadexReader = () => {
     const [ bearer, setBearer ] = useState('');
     const [ refresh, setRefresh ] = useState('');
     const [ viewedChapter, setViewedChapter ] = useState([]);
+    const [ viewedChapterHash, setViewedChapterHash ] = useState('');
 
     //todo: add bearer to axios interceptor
 
@@ -20,10 +21,11 @@ const MangadexReader = () => {
             </div>
             <div id="bottomPane" className="bottomPane">
                 <div id="navigator" className="navigator">
-                    <Navigator bearer={bearer} setViewedChapter={setViewedChapter}/>
+                    <Navigator bearer={bearer} setViewedChapter={setViewedChapter} 
+                        setViewedChapterHash={setViewedChapterHash}/>
                 </div>
                 <div id="reader" className="reader">
-                    <Reader bearer={bearer} viewedChapter={viewedChapter}/>
+                    <Reader bearer={bearer} viewedChapter={viewedChapter} viewedChapterHash={viewedChapterHash} />
                 </div>
             </div>
         </div>

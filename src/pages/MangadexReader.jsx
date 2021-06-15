@@ -8,12 +8,8 @@ import { AuthProvider } from '../context/AuthContext';
 import layout from '../styles/layout.css';
 
 const MangadexReader = () => {
-    // const [ bearer, setBearer ] = useState('');
-    // const [ refresh, setRefresh ] = useState('');
     const [ viewedChapter, setViewedChapter ] = useState([]);
     const [ viewedChapterHash, setViewedChapterHash ] = useState('');
-
-    //todo: add bearer to axios interceptor
 
     return (
         <AuthProvider>

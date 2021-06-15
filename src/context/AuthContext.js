@@ -4,18 +4,12 @@ import axios from 'axios';
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
-    // axiosInstance, mangadexApi, mangadexImg
-
-    // const [ auth, setAuth ] = useState({
-    //     bearer: '',
-    //     refresh: ''
-    // });
-
     const [ bearer, setBearer ] = useState('');
     const [ refresh, setRefresh ] = useState('');
 
     const axiosInstance = axios.create();
 
+    //todo:
     // axiosInstance.interceptors.request.use(
 
     // )
@@ -31,4 +25,4 @@ const AuthProvider = ({ children }) => {
 }
 
 export default AuthContext;
-export { AuthProvider } 
+export { AuthProvider };

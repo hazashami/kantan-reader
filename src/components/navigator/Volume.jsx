@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 
-import AppContext from '../../context/AppContext';
+import AuthContext from '../../context/AuthContext';
 import Chapter from './Chapter';
 
 import layout from '../../styles/layout.css';
 
 const Volume = ({activeId, volumeInfo, setViewedChapter, setViewedChapterHash}) => {
-    const { axiosInstance, mangadexApi } = useContext(AppContext);
+    const { axiosInstance, mangadexApi } = useContext(AuthContext);
     const [ isOpen, setIsOpen ] = useState(false);
     const [ isLoaded, setIsLoaded ] = useState(false);
     const [ chapterInfo, setChapterInfo ] = useState();

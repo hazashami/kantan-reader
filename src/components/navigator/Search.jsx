@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 
-import AppContext from '../../context/AppContext';
+// import AppContext from '../../context/AppContext';
+import AuthContext from '../../context/AuthContext';
 
 import layout from '../../styles/layout.css';
 
-const Search = ({bearer, setMangaList}) => {
-    const { axiosInstance, mangadexApi } = useContext(AppContext);
+const Search = ({ setMangaList }) => {
+    const { axiosInstance, mangadexApi, bearer } = useContext(AuthContext);
 
     const [ isAdvanced, setIsAdvanced ] = useState(false);
     const [ searchStrings, setSearchStrings ] = useState({

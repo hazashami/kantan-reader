@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 
-import AppContext from '../context/AppContext';
+// import AppContext from '../context/AppContext';
+import AuthContext from '../context/AuthContext';
 
 import layout from '../styles/layout.css';
 
-const AuthPanel = ({ bearer, setBearer, refresh, setRefresh }) => {
-    const { axiosInstance, mangadexApi } = useContext(AppContext);
+const AuthPanel = () => {
+    const { axiosInstance, mangadexApi, bearer, setBearer, refresh, setRefresh } = useContext(AuthContext);
 
     const [ loginInfo, setLoginInfo ] = useState({
         "username": '',

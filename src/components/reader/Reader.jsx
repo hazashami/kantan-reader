@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import AppContext from '../../context/AppContext';
+import AuthContext from '../../context/AuthContext';
 import useKeyHook from '../../hooks/useKeyHook';
 import Page from './Page';
 
 const LEFT = -1;
 const RIGHT = 1;
 
-const Reader = ({bearer, viewedChapter, viewedChapterHash}) => {
-    const { mangadexImgServer } = useContext(AppContext);
+const Reader = ({ viewedChapter, viewedChapterHash }) => {
+    const { mangadexImg } = useContext(AuthContext);
     const [ currentPage, setCurrentPage ] = useState(0);
     const [ imgSet, setImgSet ] = useState([]);
     const leftPress = useKeyHook("ArrowLeft");
@@ -17,7 +17,7 @@ const Reader = ({bearer, viewedChapter, viewedChapterHash}) => {
     useEffect(() => {
         setImgSet(
             Object.keys(viewedChapter).map(page => {
-                return <img src={mangadexImgServer + "/data/" + viewedChapterHash + "/" + viewedChapter[page]} />
+                return <img src={mangadexImg + "/data/" + viewedChapterHash + "/" + viewedChapter[page]} />
             })
         );
     }, [viewedChapter]);

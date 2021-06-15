@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 
-import AppContext from '../../context/AppContext';
+import AuthContext from '../../context/AuthContext';
 import Volume from './Volume';
 
 import layout from '../../styles/layout.css';
 
 const MangaList = ({mangaList, setViewedChapter, setViewedChapterHash}) => {
-    const { axiosInstance, mangadexApi } = useContext(AppContext);
+    const { axiosInstance, mangadexApi } = useContext(AuthContext);
     const [ aggregate, setAggregate ] = useState();
     //todo: figure out a cleaner way to manage this. the one:many situation is too much for my brain right now
     const [ activeTitleId, setActiveTitleId ] = useState();

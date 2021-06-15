@@ -6,8 +6,8 @@ const Page = ({viewedPage, viewedChapterHash}) => {
     
     
     // const loadPageImage = () => {
-    //     console.log("loadPageImage: " + mangadexImgServer + "/data/" + viewedChapterHash + "/" + viewedPage);
-    //     // return <img src={mangadexImgServer + "/data/" + viewedChapterHash + "/" + viewedPage} />
+    //     console.log("loadPageImage: " + mangadexImg + "/data/" + viewedChapterHash + "/" + viewedPage);
+    //     // return <img src={mangadexImg + "/data/" + viewedChapterHash + "/" + viewedPage} />
     // }
 
     return (

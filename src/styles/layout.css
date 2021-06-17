@@ -32,12 +32,13 @@ body {
 
 .navigator {
     display: flex;
-    flex-grow: 1;
+    width: calc(10vw);
+    padding-right: 1em;
 }
 
-.reader {
+.readerContainer {
     display: flex;
-    flex-grow: 11;
+    width: calc(90vw);
 }
 
 /* AuthPanel */
@@ -112,11 +113,22 @@ body {
 .reader {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .params, .advancedParams {
     display: flex;
     flex-direction: column;
+}
+
+/* Progress Bar */
+
+.progressBar {
+
+}
+
+.progressPiece {
+
 }
 
 /* Arrow */

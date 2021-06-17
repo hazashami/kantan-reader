@@ -22,7 +22,7 @@ const MangadexReader = () => {
                         <Navigator setViewedChapter={setViewedChapter} 
                             setViewedChapterHash={setViewedChapterHash}/>
                     </div>
-                    <div id="reader" className="reader">
+                    <div id="reader" className="readerContainer">
                         <Reader viewedChapter={viewedChapter} viewedChapterHash={viewedChapterHash} />
                     </div>
                 </div>

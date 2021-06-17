@@ -5,7 +5,7 @@ import Volume from './Volume';
 
 import layout from '../../styles/layout.css';
 
-const MangaList = ({mangaList, setViewedChapter, setViewedChapterHash}) => {
+const MangaList = ({mangaList, setMangaList, setViewedChapter, setViewedChapterHash}) => {
     const { axiosInstance, mangadexApi } = useContext(AuthContext);
     const [ aggregate, setAggregate ] = useState();
     //todo: figure out a cleaner way to manage this. the one:many situation is too much for my brain right now
@@ -16,7 +16,7 @@ const MangaList = ({mangaList, setViewedChapter, setViewedChapterHash}) => {
             Object.keys(mangaList).map(entry => {
                 return(
                     <span className="titleLink" key={mangaList[entry].data.id} 
-                            onClick={() => handleTitleClick(mangaList[entry].data.id)}>
+                            onClick={() => handleTitleClick(mangaList[entry])}>
                         {mangaList[entry].data.attributes.title.en}
                         { aggregate && activeTitleId === mangaList[entry].data.id ?
                             renderVolumes()
@@ -29,11 +29,12 @@ const MangaList = ({mangaList, setViewedChapter, setViewedChapterHash}) => {
     }
 
     //todo: need isOpen for active volumes
-    const handleTitleClick = (id) => {
-        axiosInstance.get(mangadexApi + "/manga/" + id + "/aggregate")
+    const handleTitleClick = (mangaTitle) => {
+        axiosInstance.get(mangadexApi + "/manga/" + mangaTitle.data.id + "/aggregate")
         .then((response) => {
+            setMangaList([mangaTitle]);
             setAggregate(response.data.volumes);
-            setActiveTitleId(id);
+            setActiveTitleId(mangaTitle.data.id);
         })
         .catch((err) => console.error(err.message));
     }

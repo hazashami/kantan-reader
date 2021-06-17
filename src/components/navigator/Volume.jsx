@@ -13,10 +13,12 @@ const Volume = ({activeId, volumeInfo, setViewedChapter, setViewedChapterHash}) 
 
     const renderVolumeInfo = () => {
         return(
-            <span className="titleLink" onClick={() => handleVolumeClick()}>
-                Volume.{volumeInfo.volume} { isOpen ? 'v' : '>' }
+            <div>
+                <span className="titleLink" onClick={() => handleVolumeClick()}>
+                    Volume.{volumeInfo.volume} { isOpen ? 'v' : '>' }
+                </span>
                 { isOpen && isLoaded ? renderChapters() : <> </> }
-            </span>
+            </div>
         )
     }
 

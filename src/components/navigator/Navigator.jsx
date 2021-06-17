@@ -9,7 +9,7 @@ const Navigator = ({ setViewedChapter, setViewedChapterHash }) => {
     return (
         <div>
             <Search setMangaList={setMangaList} />
-            <MangaList mangaList={mangaList} setViewedChapter={setViewedChapter} setViewedChapterHash={setViewedChapterHash} />
+            <MangaList mangaList={mangaList} setMangaList={setMangaList} setViewedChapter={setViewedChapter} setViewedChapterHash={setViewedChapterHash} />
         </div>
     )
 }

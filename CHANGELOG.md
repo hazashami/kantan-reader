@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.0] initial beta release
 - Initial app setup (react, webpack, babel)
 - [001-hotloading] Added hotloading
 - [002-basiclayout] Added css support, layout skeleton and established authorization

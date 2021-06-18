@@ -1,21 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 
 import layout from '../../styles/layout.css';
 
-const Chapter = ({chapterInfo, setViewedChapter, setViewedChapterHash}) => {
+const Chapter = ({ chapterInfo, setViewedChapter, setViewedChapterHash }) => {
+    const [ isActiveChapter, setIsActiveChapter ] = useState(false);
 
     const buildChapterString = () => {
+        console.log(chapterInfo);
         return "ch." + chapterInfo.attributes.chapter + ": "
                 + chapterInfo.attributes.title + " (" + chapterInfo.attributes.translatedLanguage + ")";
     }
 
     const handleChapterClick = () => {
+        setIsActiveChapter(true);
         setViewedChapter(chapterInfo.attributes.data);
         setViewedChapterHash(chapterInfo.attributes.hash);
     }
 
+    const chapterStyling = () => {
+        let classes = "chapter";
+        if (isActiveChapter) {
+            classes += " activeChapter";
+        }
+        return classes;
+    }
+
     return (
-        <div className="chapter" >
+        <div className={chapterStyling()} >
             { chapterInfo ? 
                 <span className="titleLink" onClick={handleChapterClick}>
                     {buildChapterString()}

@@ -3,12 +3,7 @@ import React, { useContext } from 'react';
 import AppContext from '../../context/AppContext';
 
 const Page = ({viewedPage, viewedChapterHash}) => {
-    
-    
-    // const loadPageImage = () => {
-    //     console.log("loadPageImage: " + mangadexImg + "/data/" + viewedChapterHash + "/" + viewedPage);
-    //     // return <img src={mangadexImg + "/data/" + viewedChapterHash + "/" + viewedPage} />
-    // }
+    //todo: replace or pojo-ify
 
     return (
         <div className="page">

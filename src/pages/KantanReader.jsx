@@ -7,16 +7,16 @@ import { AuthProvider } from '../context/AuthContext';
 
 import layout from '../styles/layout.css';
 
-const MangadexReader = () => {
+const KantanReader = () => {
     const [ viewedChapter, setViewedChapter ] = useState([]);
     const [ viewedChapterHash, setViewedChapterHash ] = useState('');
 
     return (
         <AuthProvider>
             <div id="rootPane" className="rootPane">
-                <div id="topPane" className="topPane">
+                {/* <div id="topPane" className="topPane">
                     <AuthPanel />
-                </div>
+                </div> */}
                 <div id="bottomPane" className="bottomPane">
                     <div id="navigator" className="navigator">
                         <Navigator setViewedChapter={setViewedChapter} 
@@ -31,4 +31,4 @@ const MangadexReader = () => {
     );
 }
 
-export default MangadexReader;
+export default KantanReader;

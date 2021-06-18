@@ -23,7 +23,6 @@ const Volume = ({activeId, volumeInfo, setViewedChapter, setViewedChapterHash}) 
     }
 
     const handleVolumeClick = () => {
-        console.log("handleVolumeClick");
         setIsOpen(!isOpen);
         if (activeId !== '' && chapterInfo === undefined && isLoaded === false) {
             axiosInstance.get(mangadexApi + "/chapter?manga=" + activeId + buildChapterQuery(volumeInfo.chapters))

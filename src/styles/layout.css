@@ -16,29 +16,31 @@ body {
     flex-direction: column;
 }
 
-.topPane {
+/* .topPane {
     display: flex;
     flex-direction: row;
     height: 40px;
-}
+} */
 
 .bottomPane {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
-    height: calc(100vh - 40px);
+    height: calc(100vh);
     margin: 1em;
 }
 
 .navigator {
     display: flex;
     width: calc(10vw);
+    max-width: calc(10vw);
     padding-right: 1em;
 }
 
 .readerContainer {
     display: flex;
     width: calc(90vw);
+    max-width: calc(90vw);
 }
 
 /* AuthPanel */
@@ -108,6 +110,8 @@ body {
     font-size: 10px;
 }
 
+
+
 /* Reader */
 
 .reader {
@@ -123,6 +127,10 @@ body {
     height: calc(100% - 10px);
     width: 100%;
 
+}
+
+.activeChapter {
+    color: #F4EBD9;
 }
 
 .params, .advancedParams {

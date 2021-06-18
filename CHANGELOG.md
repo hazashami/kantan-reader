@@ -13,3 +13,4 @@ All notable changes to this project will be documented in this file.
 - [007-todos] Fix navigation bug, overlapping css, move some state up to context
 - [008-progress-bar] Add progress bar (clickable)
 - [github push] update strings for consumption
+- [009-simplification] comment out partial features, simplify view

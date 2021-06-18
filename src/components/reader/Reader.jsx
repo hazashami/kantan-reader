@@ -44,14 +44,36 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
         }
     }
 
+    const getPieceClass = (entry) => {
+        let classes = "progressPiece";
+        console.log("getPieceClass");
+        if (entry == currentPage) {
+            classes += " activePiece";
+        }
+        return classes;
+    }
+
     return (
         <div className="reader">
-            <div className="arrow" onClick={() => handleClick(LEFT)}>←</div>
-            <div className="page">
-                {imgSet[currentPage]}
+            <div className="readerDisplay">
+                <div className="arrow" onClick={() => handleClick(LEFT)}>←</div>
+                <div className="page">
+                    {imgSet[currentPage]}
+                </div>
+                <div className="arrow" onClick={() => handleClick(RIGHT)}>→</div>
             </div>
-            <div className="arrow" onClick={() => handleClick(RIGHT)}>→</div>
-            <div className="progress">[ {currentPage + 1} / {viewedChapter.length + 1} ]</div>
+            {/* <div className="progressBar">[ {currentPage + 1} / {viewedChapter.length + 1} ]</div> */}
+            <div className="progressBar">
+                { imgSet ?
+                    Object.keys(imgSet).map((entry) => {
+                        return(
+                            <div key={viewedChapterHash + '-' + entry} className={getPieceClass(entry)} 
+                                style={{width: (100 / imgSet.length) + "%"}} onClick={() => setCurrentPage(entry)}/>
+                        )
+                    })
+                    : <> </>
+                }
+            </div>
         </div>
     )
 }

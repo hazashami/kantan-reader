@@ -1,8 +1,6 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 ## [Unreleased]
 
 - Initial app setup (react, webpack, babel)
@@ -14,3 +12,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [006-key-navigation] Arrow keys move from page to page. <img> tags are stored instead of re-generated every time
 - [007-todos] Fix navigation bug, overlapping css, move some state up to context
 - [008-progress-bar] Add progress bar (clickable)
+- [github push] update strings for consumption

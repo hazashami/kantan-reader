@@ -7,7 +7,7 @@ import { AuthProvider } from '../context/AuthContext';
 
 import layout from '../styles/layout.css';
 
-const MangadexReader = () => {
+const KantanReader = () => {
     const [ viewedChapter, setViewedChapter ] = useState([]);
     const [ viewedChapterHash, setViewedChapterHash ] = useState('');
 
@@ -31,4 +31,4 @@ const MangadexReader = () => {
     );
 }
 
-export default MangadexReader;
+export default KantanReader;

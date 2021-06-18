@@ -14,9 +14,9 @@ const KantanReader = () => {
     return (
         <AuthProvider>
             <div id="rootPane" className="rootPane">
-                <div id="topPane" className="topPane">
+                {/* <div id="topPane" className="topPane">
                     <AuthPanel />
-                </div>
+                </div> */}
                 <div id="bottomPane" className="bottomPane">
                     <div id="navigator" className="navigator">
                         <Navigator setViewedChapter={setViewedChapter} 

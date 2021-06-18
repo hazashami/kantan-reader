@@ -48,7 +48,7 @@ const Search = ({ setMangaList }) => {
         return (
             <div className="params">
                 <input name="title" type="text" placeholder="title" onChange={handleSearchStrings} />
-                {isAdvanced ? 
+                {/* {isAdvanced ? 
                     <div className="advancedParams">
                         <select name="status" placeholder="status" type="dropdown" onChange={handleSearchStrings}>
                             <option value="ongoing">ongoing</option>
@@ -63,7 +63,7 @@ const Search = ({ setMangaList }) => {
                         })}
                     </div>
                     : <> </>
-                }
+                } */}
             </div>
         )
     }
@@ -91,10 +91,10 @@ const Search = ({ setMangaList }) => {
 
     return(
         <div className="search">
-            <div>
+            {/* <div>
                 <input type="checkbox" name="advanced" value={isAdvanced} onChange={handleCheckboxChange}/>
                 <label>Advanced Search</label>
-            </div>
+            </div> */}
             {getInputs()}
             <button className="searchButton" onClick={submitSearch}>search</button>
         </div>

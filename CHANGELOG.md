@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.2.0]
 - [010-nginx-proxy] point host to nginx proxy until i hear from em
 
 ## [0.1.0] initial beta release

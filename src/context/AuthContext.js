@@ -9,12 +9,13 @@ const AuthProvider = ({ children }) => {
 
     const axiosInstance = axios.create();
 
-    //todo:
+    //todo: bearer auth for cors
     // axiosInstance.interceptors.request.use(
 
     // )
 
-    const mangadexApi = "https://api.mangadex.org"
+    // const mangadexApi = "https://api.mangadex.org"
+    const mangadexApi = "/api/mangadex"; //nginx proxy-pass
     const mangadexImg = "https://uploads.mangadex.org"
 
     return(

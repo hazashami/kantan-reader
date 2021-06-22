@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.0]
+- [010-nginx-proxy] point host to nginx proxy until i hear from em
+
+## [0.1.0] initial beta release
 - Initial app setup (react, webpack, babel)
 - [001-hotloading] Added hotloading
 - [002-basiclayout] Added css support, layout skeleton and established authorization

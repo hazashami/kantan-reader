@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- [011-page-fix] bugfix: clicking new chapters to start, force cast to int on reader navigation, project is dev/prod sensitive
 
 ## [0.2.0]
 - [010-nginx-proxy] point host to nginx proxy until i hear from em

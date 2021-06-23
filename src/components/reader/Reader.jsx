@@ -15,6 +15,7 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
     const rightPress = useKeyHook("ArrowRight");
 
     useEffect(() => {
+        setCurrentPage(0);
         setImgSet(
             Object.keys(viewedChapter).map(page => {
                 return <img src={mangadexImg + "/data/" + viewedChapterHash + "/" + viewedChapter[page]} />
@@ -25,7 +26,7 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
     useEffect(() => {
         if (leftPress) {
             setCurrentPage(currentPage => 
-                currentPage > 0 ? currentPage - 1 : currentPage
+                currentPage > 0 ? Number(currentPage - 1) : currentPage
             );
         }
     }, [leftPress]);
@@ -33,14 +34,14 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
     useEffect(() => {
         if (rightPress) {
             setCurrentPage(currentPage => 
-                currentPage < viewedChapter.length - 1 ? currentPage + 1 : currentPage
+                currentPage < viewedChapter.length - 1 ? Number(currentPage + 1) : currentPage
             );
         }
     }, [rightPress]);
 
     const handleClick = (direction) => {
         if (currentPage + direction <= viewedChapter.length && currentPage + direction >= 0) {
-            setCurrentPage(currentPage + direction);
+            setCurrentPage(Number(currentPage + direction));
         }
     }
 
@@ -59,7 +60,7 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
                     Object.keys(imgSet).map((entry) => {
                         return(
                             <div key={viewedChapterHash + '-' + entry} className={getPieceClass(entry)} 
-                                style={{width: (100 / imgSet.length) + "%"}} onClick={() => setCurrentPage(entry)}/>
+                                style={{width: (100 / imgSet.length) + "%"}} onClick={() => setCurrentPage(Number(entry))}/>
                         )
                     })
                     : <> </>

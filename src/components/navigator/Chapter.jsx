@@ -6,7 +6,6 @@ const Chapter = ({ chapterInfo, setViewedChapter, setViewedChapterHash }) => {
     const [ isActiveChapter, setIsActiveChapter ] = useState(false);
 
     const buildChapterString = () => {
-        console.log(chapterInfo);
         return "ch." + chapterInfo.attributes.chapter + ": "
                 + chapterInfo.attributes.title + " (" + chapterInfo.attributes.translatedLanguage + ")";
     }

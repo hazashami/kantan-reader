@@ -41,7 +41,7 @@ const Volume = ({activeId, volumeInfo, setViewedChapter, setViewedChapterHash}) 
             csv += "&chapter[]=" + chapters[chapter].chapter;
             count++;
         })
-        return csv + "&limit=" + count;
+        return csv + "&translatedLanguage[]=en&limit=" + count;
     }
 
     const renderChapters = () => {

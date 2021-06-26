@@ -6,8 +6,7 @@ const Chapter = ({ chapterInfo, setViewedChapter, setViewedChapterHash }) => {
     const [ isActiveChapter, setIsActiveChapter ] = useState(false);
 
     const buildChapterString = () => {
-        return "ch." + chapterInfo.attributes.chapter + ": "
-                + chapterInfo.attributes.title + " (" + chapterInfo.attributes.translatedLanguage + ")";
+        return "ch." + chapterInfo.attributes.chapter + ": " + chapterInfo.attributes.title;
     }
 
     const handleChapterClick = () => {

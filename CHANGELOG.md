@@ -3,8 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [0.3.0]
+## [0.4.0]
 - [012-force-en] force english translations
+
+## [0.3.0]
 - [011-page-fix] bugfix: clicking new chapters to start, force cast to int on reader navigation, project is dev/prod sensitive
 
 ## [0.2.0]

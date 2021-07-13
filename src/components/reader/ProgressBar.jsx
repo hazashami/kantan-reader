@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-const ProgressBar = ({imgSet, viewedChapterHash, currentPage, setCurrentPage}) => {
+import AppContext from '../../context/AppContext';
+
+const ProgressBar = ({imgSet, currentPage, setCurrentPage}) => {
+    const { viewedChapterHash } = useContext(AppContext);
 
     const getPieceClass = (entry) => {
         let classes = "progressPiece";
@@ -12,7 +15,7 @@ const ProgressBar = ({imgSet, viewedChapterHash, currentPage, setCurrentPage}) =
 
     return (
         <div className="progressBar">
-            { imgSet ?
+            { viewedChapterHash && imgSet ?
                 Object.keys(imgSet).map((entry) => {
                     return(
                         <div key={viewedChapterHash + '-' + entry} className={getPieceClass(entry)} 

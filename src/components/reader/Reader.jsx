@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import AuthContext from '../../context/AuthContext';
+import AppContext from '../../context/AppContext';
 import useKeyHook from '../../hooks/useKeyHook';
 import ProgressBar from './ProgressBar';
 
 const LEFT = -1;
 const RIGHT = 1;
 
-const Reader = ({ viewedChapter, viewedChapterHash }) => {
+const Reader = () => {
     const { mangadexImg } = useContext(AuthContext);
+    const { viewedChapter, viewedChapterHash } = useContext(AppContext);
     const [ currentPage, setCurrentPage ] = useState(0);
     const [ imgSet, setImgSet ] = useState([]);
     const leftPress = useKeyHook("ArrowLeft");
@@ -47,7 +49,7 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
 
     return (
         <div className="reader">
-            <ProgressBar imgSet={imgSet} viewedChapterHash={viewedChapterHash} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <div className="readerDisplay">
                 <div className="arrow" onClick={() => handleClick(LEFT)}>←</div>
                 <div className="page">
@@ -55,7 +57,7 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
                 </div>
                 <div className="arrow" onClick={() => handleClick(RIGHT)}>→</div>
             </div>
-            <ProgressBar imgSet={imgSet} viewedChapterHash={viewedChapterHash} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
     )
 }

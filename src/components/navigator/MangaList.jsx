@@ -5,7 +5,7 @@ import Volume from './Volume';
 
 import layout from '../../styles/layout.css';
 
-const MangaList = ({mangaList, setMangaList, setViewedChapter, setViewedChapterHash}) => {
+const MangaList = ({mangaList, setMangaList}) => {
     const { axiosInstance, mangadexApi } = useContext(AuthContext);
     const [ aggregate, setAggregate ] = useState();
     //todo: figure out a cleaner way to manage this. the one:many situation is too much for my brain right now
@@ -43,8 +43,7 @@ const MangaList = ({mangaList, setMangaList, setViewedChapter, setViewedChapterH
         return(
             Object.keys(aggregate).map(volume => {
                 return(
-                    <Volume key={"volume" + aggregate[volume].volume} activeId={activeTitleId} volumeInfo={aggregate[volume]} 
-                    setViewedChapter={setViewedChapter} setViewedChapterHash={setViewedChapterHash} />
+                    <Volume key={"volume" + aggregate[volume].volume} activeId={activeTitleId} volumeInfo={aggregate[volume]}/>
                 );
             })
         )

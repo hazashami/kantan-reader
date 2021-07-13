@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import AuthPanel from '../components/AuthPanel';
 import Navigator from '../components/navigator/Navigator';
@@ -8,9 +8,6 @@ import { AuthProvider } from '../context/AuthContext';
 import layout from '../styles/layout.css';
 
 const KantanReader = () => {
-    const [ viewedChapter, setViewedChapter ] = useState([]);
-    const [ viewedChapterHash, setViewedChapterHash ] = useState('');
-
     return (
         <AuthProvider>
             <div id="rootPane" className="rootPane">
@@ -19,11 +16,10 @@ const KantanReader = () => {
                 </div> */}
                 <div id="bottomPane" className="bottomPane">
                     <div id="navigator" className="navigator">
-                        <Navigator setViewedChapter={setViewedChapter} 
-                            setViewedChapterHash={setViewedChapterHash}/>
+                        <Navigator />
                     </div>
                     <div id="reader" className="readerContainer">
-                        <Reader viewedChapter={viewedChapter} viewedChapterHash={viewedChapterHash} />
+                        <Reader />
                     </div>
                 </div>
             </div>

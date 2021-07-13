@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import AuthContext from '../../context/AuthContext';
 import useKeyHook from '../../hooks/useKeyHook';
-import Page from './Page';
+import ProgressBar from './ProgressBar';
 
 const LEFT = -1;
 const RIGHT = 1;
@@ -45,27 +45,9 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
         }
     }
 
-    const getPieceClass = (entry) => {
-        let classes = "progressPiece";
-        if (entry == currentPage) {
-            classes += " activePiece";
-        }
-        return classes;
-    }
-
     return (
         <div className="reader">
-            <div className="progressBar">
-                { imgSet ?
-                    Object.keys(imgSet).map((entry) => {
-                        return(
-                            <div key={viewedChapterHash + '-' + entry} className={getPieceClass(entry)} 
-                                style={{width: (100 / imgSet.length) + "%"}} onClick={() => setCurrentPage(Number(entry))}/>
-                        )
-                    })
-                    : <> </>
-                }
-            </div>
+            <ProgressBar imgSet={imgSet} viewedChapterHash={viewedChapterHash} currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <div className="readerDisplay">
                 <div className="arrow" onClick={() => handleClick(LEFT)}>←</div>
                 <div className="page">
@@ -73,7 +55,7 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
                 </div>
                 <div className="arrow" onClick={() => handleClick(RIGHT)}>→</div>
             </div>
-
+            <ProgressBar imgSet={imgSet} viewedChapterHash={viewedChapterHash} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
     )
 }

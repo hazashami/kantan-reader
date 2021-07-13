@@ -47,7 +47,7 @@ const Search = ({ setMangaList }) => {
     const getInputs = () => {
         return (
             <div className="params">
-                <input name="title" type="text" placeholder="title" onChange={handleSearchStrings} autofocus="autofocus" />
+                <input name="title" type="text" placeholder="title" onChange={handleSearchStrings} autoFocus="autofocus" />
                 {/* {isAdvanced ? 
                     <div className="advancedParams">
                         <select name="status" placeholder="status" type="dropdown" onChange={handleSearchStrings}>

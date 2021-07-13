@@ -47,7 +47,7 @@ const Search = ({ setMangaList }) => {
     const getInputs = () => {
         return (
             <div className="params">
-                <input name="title" type="text" placeholder="title" onChange={handleSearchStrings} />
+                <input name="title" type="text" placeholder="title" onChange={handleSearchStrings} autoFocus="autofocus" />
                 {/* {isAdvanced ? 
                     <div className="advancedParams">
                         <select name="status" placeholder="status" type="dropdown" onChange={handleSearchStrings}>
@@ -77,8 +77,9 @@ const Search = ({ setMangaList }) => {
         return queryParams;
     }
 
-    const submitSearch = () => {
+    const submitSearch = (event) => {
         //todo: put this on an interceptor
+        event.preventDefault();
         const auth = {
             headers: { Authorization: `Bearer ${bearer}`}
         }
@@ -90,14 +91,14 @@ const Search = ({ setMangaList }) => {
     }
 
     return(
-        <div className="search">
+        <form className="search">
             {/* <div>
                 <input type="checkbox" name="advanced" value={isAdvanced} onChange={handleCheckboxChange}/>
                 <label>Advanced Search</label>
             </div> */}
             {getInputs()}
             <button className="searchButton" onClick={submitSearch}>search</button>
-        </div>
+        </form>
     )
 }
 

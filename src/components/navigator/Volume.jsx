@@ -5,7 +5,7 @@ import Chapter from './Chapter';
 
 import layout from '../../styles/layout.css';
 
-const Volume = ({activeId, volumeInfo, setViewedChapter, setViewedChapterHash}) => {
+const Volume = ({activeId, volumeInfo}) => {
     const { axiosInstance, mangadexApi } = useContext(AuthContext);
     const [ isOpen, setIsOpen ] = useState(false);
     const [ isLoaded, setIsLoaded ] = useState(false);
@@ -49,8 +49,7 @@ const Volume = ({activeId, volumeInfo, setViewedChapter, setViewedChapterHash}) 
             <div className="chapterContainer">
                 {Object.keys(chapterInfo).map(chapter => {
                     return(
-                        <Chapter key={"chapter-" + chapterInfo[chapter].data.id} chapterInfo={chapterInfo[chapter].data} 
-                        setViewedChapter={setViewedChapter} setViewedChapterHash={setViewedChapterHash} />
+                        <Chapter key={"chapter-" + chapterInfo[chapter].data.id} chapterInfo={chapterInfo[chapter].data} />
                     )
                 })}
             </div>

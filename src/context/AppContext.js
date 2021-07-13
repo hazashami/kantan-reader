@@ -1,26 +1,18 @@
 import React, { createContext, useState } from 'react';
 
 const AppContext = createContext({
-    chapterHash: '',
-    chapterLinks: [],
-    updateChapterHash: () => {},
-    updateChapterLinks: () => {}
+    viewedChapterHash: '',
+    viewedChapter: [],
+    setViewedChapterHash: () => {},
+    setViewedChapter: () => {}
 });
 
 const AppProvider = ({ children }) => {
-    const [ chapterHash, setChapterHash ] = useState('');
-    const [ chapterLinks, setChapterLinks ] = useState([]);
-
-    const updateChapterHash = (hash) => {
-        setChapterHash(hash);
-    }
-
-    const updateChapterLinks = (urls) => {
-        setChapterLinks(urls);
-    }
+    const [ viewedChapterHash, setViewedChapterHash ] = useState('');
+    const [ viewedChapter, setViewedChapter ] = useState([]);
 
     return(
-        <AppContext.Provider value={{ chapterHash, chapterLinks, updateChapterHash, updateChapterLinks }} >
+        <AppContext.Provider value={{ viewedChapterHash, viewedChapter, setViewedChapter, setViewedChapterHash }} >
             { children }
         </AppContext.Provider>
     )

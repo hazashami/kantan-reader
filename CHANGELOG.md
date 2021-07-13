@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- [013-misc-adjusting] spacing div at bottom of page + enter activates searchbar + cursor starts in searchbar
 
 ## [0.4.0]
 - [012-force-en] force english translations

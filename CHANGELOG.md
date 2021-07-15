@@ -2,7 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-- [013-misc-adjusting] spacing div at bottom of page + enter activates searchbar + cursor starts in searchbar
+
+## [0.5.0]
+- [014-mobile-view] mobile view! search bar is now a toggleable element.
+- [013-misc-adjusting] spacing div at bottom of page + enter activates searchbar + cursor starts in searchbar. images don't scale oddly
 
 ## [0.4.0]
 - [012-force-en] force english translations

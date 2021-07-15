@@ -24,7 +24,7 @@ const Search = ({ setMangaList }) => {
     const getInputs = () => {
         return (
             <div className="params">
-                <input name="title" type="text" placeholder="title..." onChange={handleSearchStrings} autoFocus="autofocus" />
+                <input className="titleSearch" name="title" type="text" placeholder="title..." onChange={handleSearchStrings} autoFocus="autofocus" />
             </div>
         )
     }

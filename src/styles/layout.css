@@ -5,6 +5,7 @@ body {
     background-color: #051014;
     color: #bbc8ca;
     overflow: hidden;
+    font-size: 14px;
 }
 
 /* KantanReader */
@@ -28,8 +29,7 @@ body {
 }
 
 .searchToggle {
-    display: flex;
-    border-radius: 80%;
+    border-radius: 2px;
     width: 150px;
     text-align: center;
     background: #5b5d5d;
@@ -37,7 +37,6 @@ body {
 
 .pageTitle {
     display: flex;
-    font-size: 14px;
 }
 
 .bottomPane {
@@ -57,8 +56,7 @@ body {
 .navigator {
     display: flex;
     background-color: rgba(135, 75, 75, 50);
-    width: 25vw;
-    max-width: 25vw;
+    width: 30vw;
     max-height: 85vh;
     padding: 20px;
     position: absolute;
@@ -103,6 +101,10 @@ body {
     flex-direction: column;
 }
 
+.searchButton {
+    font-size: 14px;
+}
+
 /* Metadata */
 
 .metadata {
@@ -122,7 +124,6 @@ body {
     border: none;
     margin-top: 2px;
     margin-bottom: 2px;
-    font-size: 14px;
 }
 
 .chapterList {
@@ -135,7 +136,6 @@ body {
     margin-left: 1em;
     margin-top: 2px;
     margin-bottom: 2px;
-    font-size: 12px;
 }
 
 
@@ -212,4 +212,28 @@ img {
     width: auto;
     height: fit-content;
     overflow: hidden;
+}
+
+/* mobile view */
+
+@media (min-width: 320px) and (orientation: portrait) {
+    body {
+        font-size: 30px;
+    }
+
+    .searchButton {
+        font-size: 24px;
+    }
+
+    .titleSearch {
+        font-size: 24px;
+    }
+
+    .navigator {
+        width: 40vh;
+    }
+
+    .progressBar {
+        height: 30px;
+    }
 }

@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import AuthContext from '../../context/AuthContext';
+import AppContext from '../../context/AppContext';
 import useKeyHook from '../../hooks/useKeyHook';
-import Page from './Page';
+import ProgressBar from './ProgressBar';
 
 const LEFT = -1;
 const RIGHT = 1;
 
-const Reader = ({ viewedChapter, viewedChapterHash }) => {
+const Reader = () => {
     const { mangadexImg } = useContext(AuthContext);
+    const { viewedChapter, viewedChapterHash } = useContext(AppContext);
     const [ currentPage, setCurrentPage ] = useState(0);
     const [ imgSet, setImgSet ] = useState([]);
     const leftPress = useKeyHook("ArrowLeft");
@@ -45,27 +47,9 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
         }
     }
 
-    const getPieceClass = (entry) => {
-        let classes = "progressPiece";
-        if (entry == currentPage) {
-            classes += " activePiece";
-        }
-        return classes;
-    }
-
     return (
         <div className="reader">
-            <div className="progressBar">
-                { imgSet ?
-                    Object.keys(imgSet).map((entry) => {
-                        return(
-                            <div key={viewedChapterHash + '-' + entry} className={getPieceClass(entry)} 
-                                style={{width: (100 / imgSet.length) + "%"}} onClick={() => setCurrentPage(Number(entry))}/>
-                        )
-                    })
-                    : <> </>
-                }
-            </div>
+            <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <div className="readerDisplay">
                 <div className="arrow" onClick={() => handleClick(LEFT)}>←</div>
                 <div className="page">
@@ -73,7 +57,7 @@ const Reader = ({ viewedChapter, viewedChapterHash }) => {
                 </div>
                 <div className="arrow" onClick={() => handleClick(RIGHT)}>→</div>
             </div>
-
+            <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
     )
 }

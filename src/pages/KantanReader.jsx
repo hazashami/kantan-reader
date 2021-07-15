@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import AuthPanel from '../components/AuthPanel';
 import Navigator from '../components/navigator/Navigator';
 import Reader from '../components/reader/Reader';
 import { AuthProvider } from '../context/AuthContext';
@@ -8,22 +7,33 @@ import { AuthProvider } from '../context/AuthContext';
 import layout from '../styles/layout.css';
 
 const KantanReader = () => {
-    const [ viewedChapter, setViewedChapter ] = useState([]);
-    const [ viewedChapterHash, setViewedChapterHash ] = useState('');
+    const [ navVisible, setNavVisible ] = useState(true);
+
+    const getNavigatorClass = () => {
+        let classNames = "navigator";
+        if (!navVisible) {
+            classNames += " hide";
+        }
+        return classNames;
+    }
 
     return (
         <AuthProvider>
-            <div id="rootPane" className="rootPane">
-                {/* <div id="topPane" className="topPane">
-                    <AuthPanel />
-                </div> */}
-                <div id="bottomPane" className="bottomPane">
-                    <div id="navigator" className="navigator">
-                        <Navigator setViewedChapter={setViewedChapter} 
-                            setViewedChapterHash={setViewedChapterHash}/>
+            <div className="rootPane">
+                <div className="topPane">
+                    <div className="searchToggle" onClick={() => setNavVisible(!navVisible)}>
+                        toggle search 🔎
                     </div>
-                    <div id="reader" className="readerContainer">
-                        <Reader viewedChapter={viewedChapter} viewedChapterHash={viewedChapterHash} />
+                    <div className="pageTitle">
+                        かんたん・リーダー
+                    </div>
+                </div>
+                <div className="bottomPane">
+                    <div className={getNavigatorClass()}>
+                        <Navigator />
+                    </div>
+                    <div className="readerContainer">
+                        <Reader />
                     </div>
                 </div>
             </div>

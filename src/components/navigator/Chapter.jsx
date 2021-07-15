@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
+import AppContext from '../../context/AppContext';
 import layout from '../../styles/layout.css';
 
-const Chapter = ({ chapterInfo, setViewedChapter, setViewedChapterHash }) => {
+const Chapter = ({ chapterInfo }) => {
+    const { setViewedChapter, setViewedChapterHash } = useContext(AppContext);
     const [ isActiveChapter, setIsActiveChapter ] = useState(false);
 
     const buildChapterString = () => {

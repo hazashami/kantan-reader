@@ -4,11 +4,10 @@ import { hot } from 'react-hot-loader/root';
 import KantanReader from './pages/KantanReader';
 import { AppProvider } from './context/AppContext';
 
-//kantan reader
 const App = () => {
 
     return (
-        <AppProvider >
+        <AppProvider>
             <KantanReader />
         </AppProvider>
     )

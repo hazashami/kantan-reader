@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- [015-img-fix] instead of width/height on img, just use object-fit. loses support in IE lol
 
 ## [0.5.0]
 - [014-mobile-view] mobile view! search bar is now a toggleable element.

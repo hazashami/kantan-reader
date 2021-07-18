@@ -11,7 +11,7 @@ const RIGHT = 1;
 
 const Reader = () => {
     const { mangadexImg } = useContext(AuthContext);
-    const { viewedChapter, viewedChapterHash, currentPage, setCurrentPage } = useContext(CoordinatorContext);
+    const { currentChapterFiles, currentChapterHash, currentPage, setCurrentPage } = useContext(CoordinatorContext);
     const { getNext } = useCoordinator();
     const [ imgSet, setImgSet ] = useState([]);
     const leftPress = useKeyHook("ArrowLeft");
@@ -20,11 +20,11 @@ const Reader = () => {
     useEffect(() => {
         setCurrentPage(0);
         setImgSet(
-            Object.keys(viewedChapter).map(page => {
-                return <img src={mangadexImg + "/data/" + viewedChapterHash + "/" + viewedChapter[page]} />
+            Object.keys(currentChapterFiles).map(page => {
+                return <img src={mangadexImg + "/data/" + currentChapterHash + "/" + currentChapterFiles[page]} />
             })
         );
-    }, [viewedChapter]);
+    }, [currentChapterFiles]);
 
     useEffect(() => {
         if (leftPress) {

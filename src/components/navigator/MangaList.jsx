@@ -1,16 +1,15 @@
 import React, { useContext, useState } from 'react';
 
-import AuthContext from '../../context/AuthContext';
 import CoordinatorContext from '../../context/CoordinatorContext';
-// import useCoordinator from '../../hooks/useCoordinator';
+import useCoordinator from '../../hooks/useCoordinator';
 import Volume from './Volume';
 
 import layout from '../../styles/layout.css';
 
 const MangaList = ({mangaList, setMangaList}) => {
-    const { axiosInstance, mangadexApi} = useContext(AuthContext);
+
     const { volumeList, setVolumeList } = useContext(CoordinatorContext);
-    // const { fetchVolumes } = useCoordinator();
+    const { fetchVolumes } = useCoordinator();
     const [ activeMangaId, setActiveMangaId ] = useState();
 
     const renderList = () => {
@@ -31,13 +30,7 @@ const MangaList = ({mangaList, setMangaList}) => {
     }
 
     const handleTitleClick = (mangaTitle) => {
-        axiosInstance.get(mangadexApi + "/manga/" + mangaTitle.data.id + "/aggregate")
-        .then((response) => {
-            setMangaList([mangaTitle]);
-            setActiveMangaId(mangaTitle.data.id);
-            setVolumeList(response.data.volumes);
-        })
-        .catch((err) => console.error(err.message));
+        fetchVolumes(mangaTitle, setMangaList, setActiveMangaId, setVolumeList);
     }
     
     const renderVolumes = () => {

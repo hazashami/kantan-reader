@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 
-import AuthContext from '../../context/AuthContext';
 import CoordinatorContext from '../../context/CoordinatorContext';
 import useCoordinator from '../../hooks/useCoordinator';
 import Chapter from './Chapter';
@@ -8,11 +7,18 @@ import Chapter from './Chapter';
 import layout from '../../styles/layout.css';
 
 const Volume = ({activeMangaId, volumeId}) => {
-    const { axiosInstance, mangadexApi} = useContext(AuthContext);
-    const { volumeList, chapterList, setChapterList } = useContext(CoordinatorContext);
-    const { buildChapterQuery } = useCoordinator();
+    const { volumeList } = useContext(CoordinatorContext);
+    const { fetchChapters } = useCoordinator();
+    const [ chapterList, setChapterList ] = useState();
     const [ isOpen, setIsOpen ] = useState(false);
     const [ isLoaded, setIsLoaded ] = useState(false);
+
+    const handleVolumeClick = () => {
+        setIsOpen(!isOpen);
+        if (activeMangaId !== '' && isLoaded === false) {
+            fetchChapters(activeMangaId, volumeId, setChapterList, setIsLoaded);
+        }
+    }
 
     const renderVolumeInfo = () => {
         return(
@@ -25,28 +31,14 @@ const Volume = ({activeMangaId, volumeId}) => {
         )
     }
 
-    const fetchChapters = (activeMangaId, volumeId) => {
-        axiosInstance.get(mangadexApi + "/chapter?manga=" + activeMangaId + buildChapterQuery(volumeList[volumeId].chapters))
-        .then((response) => {
-            setChapterList(response.data.results);
-        })
-        .catch((err) => console.error(err.message));
-    }
-
-    const handleVolumeClick = () => {
-        setIsOpen(!isOpen);
-        if (activeMangaId !== '' && chapterList === undefined && isLoaded === false) {
-            setChapterList(fetchChapters(activeMangaId, volumeId));
-            setIsLoaded(true);
-        }
-    }
-
     const renderChapters = () => {
         return( chapterList ?
             <div className="chapterContainer">
                 {Object.keys(chapterList).map(chapter => {
                     return(
-                        <Chapter key={"chapter-" + chapterList[chapter].data.id} chapterInfo={chapterList[chapter].data} />
+                        <Chapter key={"chapter-" + chapterList[chapter].data.id} 
+                                chapterInfo={chapterList[chapter].data}
+                                volumeId={volumeId} />
                     )
                 })}
             </div>

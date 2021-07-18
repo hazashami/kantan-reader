@@ -3,8 +3,8 @@ import React, { useState, useContext } from 'react';
 import CoordinatorContext from '../../context/CoordinatorContext';
 import layout from '../../styles/layout.css';
 
-const Chapter = ({ chapterInfo }) => {
-    const { setViewedChapter, setViewedChapterHash } = useContext(CoordinatorContext);
+const Chapter = ({ chapterInfo, volumeId }) => {
+    const { setCurrentVolume, setCurrentChapter, setCurrentChapterFiles, setCurrentChapterHash } = useContext(CoordinatorContext);
     const [ isClickedChapter, setIsClickedChapter ] = useState(false);
 
     const buildChapterString = () => {
@@ -13,8 +13,10 @@ const Chapter = ({ chapterInfo }) => {
 
     const handleChapterClick = () => {
         setIsClickedChapter(true);
-        setViewedChapter(chapterInfo.attributes.data);
-        setViewedChapterHash(chapterInfo.attributes.hash);
+        setCurrentVolume(volumeId);
+        setCurrentChapter(chapterInfo.attributes.chapter);
+        setCurrentChapterFiles(chapterInfo.attributes.data);
+        setCurrentChapterHash(chapterInfo.attributes.hash);
     }
 
     const chapterStyling = () => {

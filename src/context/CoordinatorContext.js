@@ -5,17 +5,15 @@ const CoordinatorContext = createContext({});
 const CoordinatorProvider = ({ children }) => {
     const [ volumeList, setVolumeList ] = useState();
     const [ currentVolume, setCurrentVolume ] = useState();
-    const [ currentChapter, setCurrentChapter ] = useState();
-    const [ currentChapterFiles, setCurrentChapterFiles ] = useState([]);
-    const [ currentChapterHash, setCurrentChapterHash ] = useState('');
+    const [ currentChapterData, setCurrentChapterData ] = useState();
+    const [ currentChapterList, setCurrentChapterList ] = useState();
     const [ currentPage, setCurrentPage ] = useState(0);
 
     const coordState = {
         volumeList, setVolumeList,
         currentVolume, setCurrentVolume,
-        currentChapter, setCurrentChapter,
-        currentChapterFiles, setCurrentChapterFiles,
-        currentChapterHash, setCurrentChapterHash,
+        currentChapterData, setCurrentChapterData,
+        currentChapterList, setCurrentChapterList,
         currentPage, setCurrentPage
     }
 

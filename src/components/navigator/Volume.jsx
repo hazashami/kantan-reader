@@ -8,15 +8,14 @@ import layout from '../../styles/layout.css';
 
 const Volume = ({activeMangaId, volumeId}) => {
     const { volumeList } = useContext(CoordinatorContext);
-    const { fetchChapters } = useCoordinator();
-    const [ chapterList, setChapterList ] = useState();
+    const { fetchChapters, chapterList } = useCoordinator();
     const [ isOpen, setIsOpen ] = useState(false);
     const [ isLoaded, setIsLoaded ] = useState(false);
 
     const handleVolumeClick = () => {
         setIsOpen(!isOpen);
         if (activeMangaId !== '' && isLoaded === false) {
-            fetchChapters(activeMangaId, volumeId, setChapterList, setIsLoaded);
+            fetchChapters(activeMangaId, volumeId, setIsLoaded);
         }
     }
 
@@ -36,9 +35,7 @@ const Volume = ({activeMangaId, volumeId}) => {
             <div className="chapterContainer">
                 {Object.keys(chapterList).map(chapter => {
                     return(
-                        <Chapter key={"chapter-" + chapterList[chapter].data.id} 
-                                chapterInfo={chapterList[chapter].data}
-                                volumeId={volumeId} />
+                        <Chapter key={"chapter-" + chapterList[chapter].data.id} chapterInfo={chapterList[chapter].data} volumeId={volumeId} />
                     )
                 })}
             </div>

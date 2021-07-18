@@ -7,7 +7,6 @@ import Volume from './Volume';
 import layout from '../../styles/layout.css';
 
 const MangaList = ({mangaList, setMangaList}) => {
-
     const { volumeList, setVolumeList } = useContext(CoordinatorContext);
     const { fetchVolumes } = useCoordinator();
     const [ activeMangaId, setActiveMangaId ] = useState();

@@ -1,25 +1,25 @@
 import React, { useState, useContext } from 'react';
 
-import AppContext from '../../context/AppContext';
+import CoordinatorContext from '../../context/CoordinatorContext';
 import layout from '../../styles/layout.css';
 
 const Chapter = ({ chapterInfo }) => {
-    const { setViewedChapter, setViewedChapterHash } = useContext(AppContext);
-    const [ isActiveChapter, setIsActiveChapter ] = useState(false);
+    const { setViewedChapter, setViewedChapterHash } = useContext(CoordinatorContext);
+    const [ isClickedChapter, setIsClickedChapter ] = useState(false);
 
     const buildChapterString = () => {
         return "ch." + chapterInfo.attributes.chapter + ": " + chapterInfo.attributes.title;
     }
 
     const handleChapterClick = () => {
-        setIsActiveChapter(true);
+        setIsClickedChapter(true);
         setViewedChapter(chapterInfo.attributes.data);
         setViewedChapterHash(chapterInfo.attributes.hash);
     }
 
     const chapterStyling = () => {
         let classes = "chapter";
-        if (isActiveChapter) {
+        if (isClickedChapter) {
             classes += " activeChapter";
         }
         return classes;

@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- [016-next-chapter] attempts to load the next (or previous) chapter
 - [015-img-fix] instead of width/height on img, just use object-fit. loses support in IE lol
 
 ## [0.5.0]

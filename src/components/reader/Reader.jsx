@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import AuthContext from '../../context/AuthContext';
-import AppContext from '../../context/AppContext';
+import CoordinatorContext from '../../context/CoordinatorContext';
+import useCoordinator from '../../hooks/useCoordinator';
 import useKeyHook from '../../hooks/useKeyHook';
 import ProgressBar from './ProgressBar';
 
@@ -10,8 +11,8 @@ const RIGHT = 1;
 
 const Reader = () => {
     const { mangadexImg } = useContext(AuthContext);
-    const { viewedChapter, viewedChapterHash } = useContext(AppContext);
-    const [ currentPage, setCurrentPage ] = useState(0);
+    const { viewedChapter, viewedChapterHash, currentPage, setCurrentPage } = useContext(CoordinatorContext);
+    const { getNext } = useCoordinator();
     const [ imgSet, setImgSet ] = useState([]);
     const leftPress = useKeyHook("ArrowLeft");
     const rightPress = useKeyHook("ArrowRight");
@@ -27,35 +28,25 @@ const Reader = () => {
 
     useEffect(() => {
         if (leftPress) {
-            setCurrentPage(currentPage => 
-                currentPage > 0 ? Number(currentPage - 1) : currentPage
-            );
+            getNext(LEFT);
         }
     }, [leftPress]);
 
     useEffect(() => {
         if (rightPress) {
-            setCurrentPage(currentPage => 
-                currentPage < viewedChapter.length - 1 ? Number(currentPage + 1) : currentPage
-            );
+            getNext(RIGHT);
         }
     }, [rightPress]);
-
-    const handleClick = (direction) => {
-        if (currentPage + direction <= viewedChapter.length && currentPage + direction >= 0) {
-            setCurrentPage(Number(currentPage + direction));
-        }
-    }
 
     return (
         <div className="reader">
             <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <div className="readerDisplay">
-                <div className="arrow" onClick={() => handleClick(LEFT)}>←</div>
+                <div className="arrow" onClick={() => getNext(LEFT)}>←</div>
                 <div className="page">
                     {imgSet[currentPage]}
                 </div>
-                <div className="arrow" onClick={() => handleClick(RIGHT)}>→</div>
+                <div className="arrow" onClick={() => getNext(RIGHT)}>→</div>
             </div>
             <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>

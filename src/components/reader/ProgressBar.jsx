@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 
-import AppContext from '../../context/AppContext';
+import CoordinatorContext from '../../context/CoordinatorContext';
 
 const ProgressBar = ({imgSet, currentPage, setCurrentPage}) => {
-    const { viewedChapterHash } = useContext(AppContext);
+    const { viewedChapterHash } = useContext(CoordinatorContext);
 
     const getPieceClass = (entry) => {
         let classes = "progressPiece";

@@ -1,15 +1,17 @@
 import React, { useContext, useState } from 'react';
 
 import AuthContext from '../../context/AuthContext';
+import CoordinatorContext from '../../context/CoordinatorContext';
+// import useCoordinator from '../../hooks/useCoordinator';
 import Volume from './Volume';
 
 import layout from '../../styles/layout.css';
 
 const MangaList = ({mangaList, setMangaList}) => {
-    const { axiosInstance, mangadexApi } = useContext(AuthContext);
-    const [ aggregate, setAggregate ] = useState();
-    //todo: figure out a cleaner way to manage this. the one:many situation is too much for my brain right now
-    const [ activeTitleId, setActiveTitleId ] = useState();
+    const { axiosInstance, mangadexApi} = useContext(AuthContext);
+    const { volumeList, setVolumeList } = useContext(CoordinatorContext);
+    // const { fetchVolumes } = useCoordinator();
+    const [ activeMangaId, setActiveMangaId ] = useState();
 
     const renderList = () => {
         return(
@@ -18,7 +20,7 @@ const MangaList = ({mangaList, setMangaList}) => {
                     <span className="titleLink" key={mangaList[entry].data.id} 
                             onClick={() => handleTitleClick(mangaList[entry])}>
                         {mangaList[entry].data.attributes.title.en}
-                        { aggregate && activeTitleId === mangaList[entry].data.id ?
+                        { volumeList && activeMangaId === mangaList[entry].data.id ?
                             renderVolumes()
                             : <> </>
                         }
@@ -28,22 +30,21 @@ const MangaList = ({mangaList, setMangaList}) => {
         );
     }
 
-    //todo: need isOpen for active volumes
     const handleTitleClick = (mangaTitle) => {
         axiosInstance.get(mangadexApi + "/manga/" + mangaTitle.data.id + "/aggregate")
         .then((response) => {
             setMangaList([mangaTitle]);
-            setAggregate(response.data.volumes);
-            setActiveTitleId(mangaTitle.data.id);
+            setActiveMangaId(mangaTitle.data.id);
+            setVolumeList(response.data.volumes);
         })
         .catch((err) => console.error(err.message));
     }
     
     const renderVolumes = () => {
         return(
-            Object.keys(aggregate).map(volume => {
+            Object.keys(volumeList).map(volume => {
                 return(
-                    <Volume key={"volume" + aggregate[volume].volume} activeId={activeTitleId} volumeInfo={aggregate[volume]}/>
+                    <Volume key={"volume" + volumeList[volume].volume} activeMangaId={activeMangaId} volumeId={volume}/>
                 );
             })
         )

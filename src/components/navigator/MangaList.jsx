@@ -7,7 +7,7 @@ import Volume from './Volume';
 import layout from '../../styles/layout.css';
 
 const MangaList = ({mangaList, setMangaList}) => {
-    const { volumeList, setVolumeList } = useContext(CoordinatorContext);
+    const { volumeList } = useContext(CoordinatorContext);
     const { fetchVolumes } = useCoordinator();
     const [ activeMangaId, setActiveMangaId ] = useState();
 
@@ -29,7 +29,9 @@ const MangaList = ({mangaList, setMangaList}) => {
     }
 
     const handleTitleClick = (mangaTitle) => {
-        fetchVolumes(mangaTitle, setMangaList, setActiveMangaId, setVolumeList);
+        fetchVolumes(mangaTitle);
+        setMangaList([mangaTitle]);
+        setActiveMangaId(mangaTitle.data.id);
     }
     
     const renderVolumes = () => {

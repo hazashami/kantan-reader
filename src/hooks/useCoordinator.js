@@ -6,18 +6,16 @@ import CoordinatorContext from '../context/CoordinatorContext';
 const useCoordinator = () => {
     const { axiosInstance, mangadexApi} = useContext(AuthContext);
     const { 
-        volumeList, currentVolume, 
+        volumeList, setVolumeList, currentVolume, 
         currentChapterData, setCurrentChapterData, currentChapterList, setCurrentChapterList,
         currentPage, setCurrentPage 
     } = useContext(CoordinatorContext);
 
     const [ chapterList, setChapterList ] = useState();
 
-    const fetchVolumes = (mangaTitle, setMangaList, setActiveMangaId, setVolumeList) => {
+    const fetchVolumes = (mangaTitle) => {
         axiosInstance.get(mangadexApi + "/manga/" + mangaTitle.data.id + "/aggregate")
         .then((response) => {
-            setMangaList([mangaTitle]);
-            setActiveMangaId(mangaTitle.data.id);
             setVolumeList(response.data.volumes);
         })
         .catch((err) => console.error(err.message));
@@ -72,8 +70,27 @@ const useCoordinator = () => {
                 //load new vol and then trigger new fetchchapter for new chapterList, store that as currentChapterList
                 console.log(nextChapter);
                 // loadNewChapter(nextChapter, nextVolumeNum);
-            } else { //no more volumes in that direction
-                console.log("couldn't get next volume");
+
+                /*
+                fetchVolumes(activeMangaId) << mangalist.L19
+                then get first chapter from that.
+                only question is how to async chain that process.
+                maybe a conditional .finally?
+                .finally(() => {
+                    if (foo) {
+                        then fetchChapters()
+                            .finally(() => {
+                                if (foo) {
+                                    setCurrentChapterData(Objects.values(list)[0]);
+                                }
+                            })
+                    }
+                }
+                ew! i don't like it! chaining async calls!.. but well, what can you do.
+                still fragile too. this whole getNextChapter method sucks ass. myu
+                */
+            } else {
+                alert("No more volumes found!");
             }
         }
     }

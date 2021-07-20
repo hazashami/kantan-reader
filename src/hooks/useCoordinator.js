@@ -7,7 +7,7 @@ const useCoordinator = () => {
     const { axiosInstance, mangadexApi } = useContext(AuthContext);
     const { 
         activeMangaId,
-        volumeList, setVolumeList, currentVolume, 
+        volumeList, setVolumeList, currentVolume, setCurrentVolume, 
         currentChapterData, setCurrentChapterData, currentChapterList, setCurrentChapterList,
         currentPage, setCurrentPage 
     } = useContext(CoordinatorContext);
@@ -81,8 +81,11 @@ const useCoordinator = () => {
                 .finally(() => {
                     console.log('uC fCP finally');
                     console.log(currentChapterList);
-                    // setCurrentChapterData(currentChapterList[nextChapterNum].data.attributes);
-                    // currentChapterList[nextChapterNum].data.attributes
+                    console.log(currentChapterList[firstOrLast]);
+                    if (currentChapterList[firstOrLast]) {
+                        setCurrentVolume(nextVolumeNum);
+                        setCurrentChapterData(currentChapterList[firstOrLast].data.attributes);
+                    }
                 });
         } else {
             alert("No more volumes found!");

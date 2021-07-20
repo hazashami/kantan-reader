@@ -6,8 +6,8 @@ import Chapter from './Chapter';
 
 import layout from '../../styles/layout.css';
 
-const Volume = ({activeMangaId, volumeId}) => {
-    const { volumeList } = useContext(CoordinatorContext);
+const Volume = ({volumeId}) => {
+    const { activeMangaId, volumeList } = useContext(CoordinatorContext);
     const { fetchChapters, chapterList } = useCoordinator();
     const [ isOpen, setIsOpen ] = useState(false);
     const [ isLoaded, setIsLoaded ] = useState(false);
@@ -15,7 +15,10 @@ const Volume = ({activeMangaId, volumeId}) => {
     const handleVolumeClick = () => {
         setIsOpen(!isOpen);
         if (activeMangaId !== '' && isLoaded === false) {
-            fetchChapters(activeMangaId, volumeId, setIsLoaded);
+            fetchChapters(volumeId)
+                .finally(() => {
+                    setIsLoaded(true);
+                });
         }
     }
 

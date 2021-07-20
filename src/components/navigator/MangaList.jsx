@@ -7,9 +7,8 @@ import Volume from './Volume';
 import layout from '../../styles/layout.css';
 
 const MangaList = ({mangaList, setMangaList}) => {
-    const { volumeList } = useContext(CoordinatorContext);
+    const { activeMangaId, setActiveMangaId, volumeList } = useContext(CoordinatorContext);
     const { fetchVolumes } = useCoordinator();
-    const [ activeMangaId, setActiveMangaId ] = useState();
 
     const renderList = () => {
         return(
@@ -38,7 +37,7 @@ const MangaList = ({mangaList, setMangaList}) => {
         return(
             Object.keys(volumeList).map(volume => {
                 return(
-                    <Volume key={"volume" + volumeList[volume].volume} activeMangaId={activeMangaId} volumeId={volume}/>
+                    <Volume key={"volume" + volumeList[volume].volume} volumeId={volume}/>
                 );
             })
         )

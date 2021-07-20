@@ -59,38 +59,40 @@ const useCoordinator = () => {
         const chaptersKeys = Object.keys(volumeList[currentVolume].chapters);
         const nextChapterNum = chaptersKeys.indexOf(currentChapterData.chapter) + direction;
         if (nextChapterNum < chaptersKeys.length && nextChapterNum >= 0) {
-            //doesn't always work. maybe a courtesy check, and if that fails do some trash shit
+            console.log("curCh: " + chaptersKeys.indexOf(currentChapterData.chapter) + ", nextCh: " + nextChapterNum);
+            console.log(currentChapterList[nextChapterNum].data.attributes);
             setCurrentChapterData(currentChapterList[nextChapterNum].data.attributes);
         } else {
-            getNextVolume(direction);
+            // getNextVolume(direction);
+            alert("end of volume " + currentVolume + ", please select next volume");
         }
     }
 
-    const getNextVolume = (direction) => {
-        const volumeKeys = Object.keys(volumeList);
-        const nextVolumeNum = volumeKeys.indexOf(currentVolume) + direction + 1;
-        if (nextVolumeNum < volumeKeys.length && nextVolumeNum >= 0) {
-            const nextChaptersKeys = Object.keys(volumeList[nextVolumeNum].chapters);
-            const firstOrLast = direction > 0 ? 0 : nextChaptersKeys.length - 1;
-            const nextChapter = Object.values(volumeList[nextVolumeNum].chapters)[firstOrLast];
-            //load new vol and then trigger new fetchchapter for new chapterList, store that as currentChapterList
-            console.log(nextChapter);
-            console.log("curvol: " + currentVolume + ", nextvol: " + nextVolumeNum + ", nextch: " + nextChapter.chapter + ", at index: " + firstOrLast);
+    // const getNextVolume = (direction) => {
+    //     const volumeKeys = Object.keys(volumeList);
+    //     const nextVolumeNum = volumeKeys.indexOf(currentVolume) + direction + 1;
+    //     if (nextVolumeNum < volumeKeys.length && nextVolumeNum >= 0) {
+    //         const nextChaptersKeys = Object.keys(volumeList[nextVolumeNum].chapters);
+    //         const firstOrLast = direction > 0 ? 0 : nextChaptersKeys.length - 1;
+    //         const nextChapter = Object.values(volumeList[nextVolumeNum].chapters)[firstOrLast];
+    //         //load new vol and then trigger new fetchchapter for new chapterList, store that as currentChapterList
+    //         console.log(nextChapter);
+    //         console.log("curvol: " + currentVolume + ", nextvol: " + nextVolumeNum + ", nextch: " + nextChapter.chapter + ", at index: " + firstOrLast);
 
-            fetchChapters(nextVolumeNum)
-                .finally(() => {
-                    console.log('uC fCP finally');
-                    console.log(currentChapterList);
-                    console.log(currentChapterList[firstOrLast]);
-                    if (currentChapterList[firstOrLast]) {
-                        setCurrentVolume(nextVolumeNum);
-                        setCurrentChapterData(currentChapterList[firstOrLast].data.attributes);
-                    }
-                });
-        } else {
-            alert("No more volumes found!");
-        }
-    }
+    //         fetchChapters(nextVolumeNum)
+    //             .finally(() => {
+    //                 // console.log('uC fCP finally');
+    //                 // console.log(currentChapterList);
+    //                 // console.log(currentChapterList[firstOrLast]);
+    //                 if (currentChapterList[firstOrLast]) {
+    //                     setCurrentVolume(nextVolumeNum);
+    //                     setCurrentChapterData(currentChapterList[firstOrLast].data.attributes);
+    //                 }
+    //             });
+    //     } else {
+    //         alert("No more volumes found!");
+    //     }
+    // }
 
     return {
         fetchVolumes,

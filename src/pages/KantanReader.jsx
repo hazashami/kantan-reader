@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Navigator from '../components/navigator/Navigator';
 import Reader from '../components/reader/Reader';
 import { AuthProvider } from '../context/AuthContext';
-import { CoordinatorProvider } from '../context/CoordinatorContext';
+import CoordinatorContext from '../context/CoordinatorContext';
 
 import layout from '../styles/layout.css';
 
 const KantanReader = () => {
+    const { currentChapterData } = useContext(CoordinatorContext);
     const [ navVisible, setNavVisible ] = useState(true);
 
     const getNavigatorClass = () => {
@@ -20,26 +21,27 @@ const KantanReader = () => {
 
     return (
         <AuthProvider>
-            <CoordinatorProvider>
-                <div className="rootPane">
-                    <div className="topPane">
-                        <div className="searchToggle" onClick={() => setNavVisible(!navVisible)}>
-                            toggle search 🔎
-                        </div>
-                        <div className="pageTitle">
-                            かんたん・リーダー
-                        </div>
+            <div className="rootPane">
+                <div className="topPane">
+                    <div className="searchToggle" onClick={() => setNavVisible(!navVisible)}>
+                        toggle search 🔎
                     </div>
-                    <div className="bottomPane">
-                        <div className={getNavigatorClass()}>
-                            <Navigator />
-                        </div>
-                        <div className="readerContainer">
-                            <Reader />
-                        </div>
+                    <div className="currentlyReading">
+                        { currentChapterData ? "ch " + currentChapterData.chapter + ": " + currentChapterData.title : "" }
+                    </div>
+                    <div className="pageTitle">
+                        かんたん・リーダー
                     </div>
                 </div>
-            </CoordinatorProvider>
+                <div className="bottomPane">
+                    <div className={getNavigatorClass()}>
+                        <Navigator />
+                    </div>
+                    <div className="readerContainer">
+                        <Reader />
+                    </div>
+                </div>
+            </div>
         </AuthProvider>
     );
 }

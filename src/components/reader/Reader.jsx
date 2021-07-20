@@ -43,6 +43,9 @@ const Reader = () => {
 
     return (
         <div className="reader">
+            <div className="readerTitle">
+                { currentChapterData ? "ch " + currentChapterData.chapter + ": " + currentChapterData.title : "" }
+            </div>
             <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <div className="readerDisplay">
                 <div className="arrow" onClick={() => getNext(LEFT)}>←</div>

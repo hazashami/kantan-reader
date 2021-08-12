@@ -23,10 +23,14 @@ const Volume = ({volumeId}) => {
     }
 
     const renderVolumeInfo = () => {
+        let volTitle = "Volume." + volumeList[volumeId].volume;
+        if (volTitle === "Volume.none") {
+            volTitle = "Latest Chapters";
+        }
         return(
             <div>
                 <span className="titleLink" onClick={() => handleVolumeClick()}>
-                    Volume.{volumeList[volumeId].volume} { isOpen ? 'v' : '>' }
+                    {volTitle} { isOpen ? 'v' : '>' }
                 </span>
                 { isOpen && isLoaded ? renderChapters() : <> </> }
             </div>

@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- [017-bigger-viewscreen] take advantage of as much space as possible for easier reading (on mobile especially)
 - [016-next-chapter] attempts to load the next (or previous) chapter
 - [015-img-fix] instead of width/height on img, just use object-fit. loses support in IE lol
 

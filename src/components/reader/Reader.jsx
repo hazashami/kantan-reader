@@ -46,11 +46,11 @@ const Reader = () => {
 
             <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <div className="readerDisplay">
-                <div className="arrow" onClick={() => getNext(LEFT)}>←</div>
-                <div className="page">
-                    {imgSet[currentPage]}
+                <div className="readerButtons">
+                    <div className="arrow" onClick={() => getNext(LEFT)} />
+                    <div className="arrow" onClick={() => getNext(RIGHT)} />
                 </div>
-                <div className="arrow" onClick={() => getNext(RIGHT)}>→</div>
+                <div className="page">{imgSet[currentPage]}</div>
             </div>
             <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>

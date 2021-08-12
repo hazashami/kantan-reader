@@ -29,6 +29,9 @@ const KantanReader = () => {
                     <div className="currentlyReading">
                         { currentChapterData ? "ch " + currentChapterData.chapter + ": " + currentChapterData.title : "" }
                     </div>
+                    <a className="link" href="https://github.com/hazashami/kantan-reader/blob/develop/GUIDE.md" target="_blank">
+                        Kantan Reader Guide
+                    </a>
                     <div className="pageTitle">
                         かんたん・リーダー
                     </div>

@@ -41,6 +41,12 @@ body {
 
 .pageTitle {
     display: flex;
+    color: #bbc8ca; 
+}
+
+.link {
+    display: flex;
+    color: rgba(135, 75, 75, 30);
 }
 
 .bottomPane {
@@ -59,12 +65,13 @@ body {
 
 .navigator {
     display: flex;
-    background-color: rgba(135, 75, 75, 50);
+    background-color: rgba(135, 75, 75, 30);
     width: 30vw;
     max-height: 85vh;
     padding: 20px;
     position: absolute;
     overflow-y: scroll;
+    z-index: 99;
 }
 
 .readerContainer {
@@ -95,8 +102,6 @@ body {
     padding-left: 1em;
     padding-right: 1em;
 }
-
-/* Navigator */
 
 /* Search */
 
@@ -142,8 +147,6 @@ body {
     margin-bottom: 2px;
 }
 
-
-
 /* Reader */
 
 .reader {
@@ -160,6 +163,23 @@ body {
     height: calc(100% - 20px);
     max-height: calc(95vh - 60px);
     width: 100%;
+    position: relative;
+}
+
+.readerButtons {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 10;
+    position: absolute;
+}
+
+.arrow {
+    display: flex;
+    width: 40%;
+    background-color: #5b5d5d;
 }
 
 .activeChapter {
@@ -189,25 +209,13 @@ body {
     background-color: #bbc8ca;
 }
 
-/* Arrow */
-
-.arrow {
-    display: flex;
-    padding-left: 1em;
-    padding-right: 1em;
-    flex-grow: 1;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #5b5d5d;
-    color: #bbc8ca;
-}
-
 /* Page */
 
 .page {
     display: flex;
-    flex-grow: 11;
     justify-content: center;
+    position: relative;
+    flex-grow: 1;
 }
 
 img {

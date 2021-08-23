@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.6.0]
 - [018-updated-github] updated some strings to reflect new github repo name
 - [017-bigger-viewscreen] take advantage of as much space as possible for easier reading (on mobile especially)
 - [016-next-chapter] attempts to load the next (or previous) chapter

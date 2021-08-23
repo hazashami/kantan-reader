@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import AuthContext from '../../context/AuthContext';
-import AppContext from '../../context/AppContext';
+import CoordinatorContext from '../../context/CoordinatorContext';
+import useCoordinator from '../../hooks/useCoordinator';
 import useKeyHook from '../../hooks/useKeyHook';
 import ProgressBar from './ProgressBar';
 
@@ -10,52 +11,46 @@ const RIGHT = 1;
 
 const Reader = () => {
     const { mangadexImg } = useContext(AuthContext);
-    const { viewedChapter, viewedChapterHash } = useContext(AppContext);
-    const [ currentPage, setCurrentPage ] = useState(0);
+    const { currentChapterData, currentPage, setCurrentPage } = useContext(CoordinatorContext);
+    const { getNext } = useCoordinator();
     const [ imgSet, setImgSet ] = useState([]);
     const leftPress = useKeyHook("ArrowLeft");
     const rightPress = useKeyHook("ArrowRight");
 
     useEffect(() => {
         setCurrentPage(0);
-        setImgSet(
-            Object.keys(viewedChapter).map(page => {
-                return <img src={mangadexImg + "/data/" + viewedChapterHash + "/" + viewedChapter[page]} />
-            })
-        );
-    }, [viewedChapter]);
+        if (currentChapterData && currentChapterData.data) {
+            setImgSet(
+                Object.keys(currentChapterData.data).map(page => {
+                    return <img src={mangadexImg + "/data/" + currentChapterData.hash + "/" + currentChapterData.data[page]} />
+                })
+            );
+        }
+
+    }, [currentChapterData]);
 
     useEffect(() => {
         if (leftPress) {
-            setCurrentPage(currentPage => 
-                currentPage > 0 ? Number(currentPage - 1) : currentPage
-            );
+            getNext(LEFT);
         }
     }, [leftPress]);
 
     useEffect(() => {
         if (rightPress) {
-            setCurrentPage(currentPage => 
-                currentPage < viewedChapter.length - 1 ? Number(currentPage + 1) : currentPage
-            );
+            getNext(RIGHT);
         }
     }, [rightPress]);
 
-    const handleClick = (direction) => {
-        if (currentPage + direction <= viewedChapter.length && currentPage + direction >= 0) {
-            setCurrentPage(Number(currentPage + direction));
-        }
-    }
-
     return (
         <div className="reader">
+
             <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <div className="readerDisplay">
-                <div className="arrow" onClick={() => handleClick(LEFT)}>←</div>
-                <div className="page">
-                    {imgSet[currentPage]}
+                <div className="readerButtons">
+                    <div className="arrow" onClick={() => getNext(LEFT)} />
+                    <div className="arrow" onClick={() => getNext(RIGHT)} />
                 </div>
-                <div className="arrow" onClick={() => handleClick(RIGHT)}>→</div>
+                <div className="page">{imgSet[currentPage]}</div>
             </div>
             <ProgressBar imgSet={imgSet} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Navigator from '../components/navigator/Navigator';
 import Reader from '../components/reader/Reader';
 import { AuthProvider } from '../context/AuthContext';
+import CoordinatorContext from '../context/CoordinatorContext';
 
 import layout from '../styles/layout.css';
 
 const KantanReader = () => {
+    const { currentChapterData } = useContext(CoordinatorContext);
     const [ navVisible, setNavVisible ] = useState(true);
 
     const getNavigatorClass = () => {
@@ -24,6 +26,12 @@ const KantanReader = () => {
                     <div className="searchToggle" onClick={() => setNavVisible(!navVisible)}>
                         toggle search 🔎
                     </div>
+                    <div className="currentlyReading">
+                        { currentChapterData ? "ch " + currentChapterData.chapter + ": " + currentChapterData.title : "" }
+                    </div>
+                    <a className="link" href="https://github.com/ijcresse/kantan-reader/blob/develop/GUIDE.md" target="_blank">
+                        Kantan Reader Guide
+                    </a>
                     <div className="pageTitle">
                         かんたん・リーダー
                     </div>

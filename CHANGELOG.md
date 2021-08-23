@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.6.0]
+- [018-updated-github] updated some strings to reflect new github repo name
+- [017-bigger-viewscreen] take advantage of as much space as possible for easier reading (on mobile especially)
+- [016-next-chapter] attempts to load the next (or previous) chapter
+- [015-img-fix] instead of width/height on img, just use object-fit. loses support in IE lol
+
 ## [0.5.0]
 - [014-mobile-view] mobile view! search bar is now a toggleable element.
 - [013-misc-adjusting] spacing div at bottom of page + enter activates searchbar + cursor starts in searchbar. images don't scale oddly

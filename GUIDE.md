@@ -25,6 +25,6 @@ If there are no more chapters in a volume, Kantan Reader will show an alert sayi
 - Please note that sometimes images may load slowly, due to your connection or mangadex's. Navigating to a new page will load a new image - please be patient.
 
 ## Suggestions? Bug reports?
-Feel free to contact me at hazashami@gmail.com, or submit a pull request here. This is a small project, so responses may be delayed.
+Feel free to contact me at ijcresse@gmail.com, or submit a pull request here. This is a small project, so responses may be delayed.
 
 Thank you~

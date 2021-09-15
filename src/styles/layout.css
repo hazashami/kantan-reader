@@ -32,7 +32,13 @@ body {
     border-radius: 3px;
     width: 150px;
     text-align: center;
-    background: rgba(135, 75, 75, 30);
+    color: #bbc8ca;
+    border: none;
+    background: rgba(135, 75, 75, 1);
+}
+
+.searchToggle.active {
+    background: rgba(135, 75, 75, 0.5);
 }
 
 .currentlyReading {

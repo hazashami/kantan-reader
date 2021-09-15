@@ -17,9 +17,9 @@ const KantanReader = () => {
         <AuthProvider>
             <div className="rootPane">
                 <div className="topPane">
-                    <div className="searchToggle" onClick={() => setNavVisible(!navVisible)}>
+                    <button className={navVisible ? "searchToggle" : "searchToggle active"} onClick={() => setNavVisible(!navVisible)}>
                         toggle searchbox
-                    </div>
+                    </button>
                     <div className="currentlyReading">
                         { currentChapterData ? "ch " + currentChapterData.chapter + ": " + currentChapterData.title : "" }
                     </div>

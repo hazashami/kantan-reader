@@ -29,10 +29,10 @@ body {
 }
 
 .searchToggle {
-    border-radius: 2px;
+    border-radius: 3px;
     width: 150px;
     text-align: center;
-    background: #5b5d5d;
+    background: rgba(135, 75, 75, 30);
 }
 
 .currentlyReading {
@@ -58,11 +58,6 @@ body {
     position: relative;
 }
 
-.hide {
-    display: none !important;
-    transition: all ease-in 0.5s;
-}
-
 .navigator {
     display: flex;
     background-color: rgba(135, 75, 75, 30);
@@ -72,6 +67,10 @@ body {
     position: absolute;
     overflow-y: scroll;
     z-index: 99;
+}
+
+.navigator.hide {
+    visibility: hidden !important;
 }
 
 .readerContainer {

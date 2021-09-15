@@ -14,10 +14,10 @@ const MangaList = ({mangaList, setMangaList}) => {
         return(
             Object.keys(mangaList).map(entry => {
                 return(
-                    <span className="titleLink" key={mangaList[entry].data.id} 
+                    <span className="titleLink" key={mangaList[entry].id} 
                             onClick={() => handleTitleClick(mangaList[entry])}>
-                        {mangaList[entry].data.attributes.title.en}
-                        { volumeList && activeMangaId === mangaList[entry].data.id ?
+                        {mangaList[entry].attributes.title.en}
+                        { volumeList && activeMangaId === mangaList[entry].id ?
                             renderVolumes()
                             : <> </>
                         }
@@ -30,7 +30,7 @@ const MangaList = ({mangaList, setMangaList}) => {
     const handleTitleClick = (mangaTitle) => {
         fetchVolumes(mangaTitle);
         setMangaList([mangaTitle]);
-        setActiveMangaId(mangaTitle.data.id);
+        setActiveMangaId(mangaTitle.id);
     }
     
     const renderVolumes = () => {
@@ -45,7 +45,7 @@ const MangaList = ({mangaList, setMangaList}) => {
 
     return (
         <div className="mangaList">
-            {mangaList.length > 0 ? renderList() : <></>}
+            {(mangaList && mangaList.length > 0) ? renderList() : <>No Results</>}
         </div>
     )
 }

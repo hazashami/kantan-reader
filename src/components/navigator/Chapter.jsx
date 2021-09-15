@@ -16,9 +16,6 @@ const Chapter = ({ chapterInfo, volumeId }) => {
         setIsClickedChapter(true);
         setCurrentVolume(volumeId);
         setCurrentChapterData(chapterInfo.attributes);
-        // setCurrentChapter(chapterInfo.attributes.chapter);
-        // setCurrentChapterFiles(chapterInfo.attributes.data);
-        // setCurrentChapterHash(chapterInfo.attributes.hash);
     }
 
     const chapterStyling = () => {

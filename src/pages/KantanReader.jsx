@@ -11,25 +11,19 @@ const KantanReader = () => {
     const { currentChapterData } = useContext(CoordinatorContext);
     const [ navVisible, setNavVisible ] = useState(true);
 
-    const getNavigatorClass = () => {
-        let classNames = "navigator";
-        if (!navVisible) {
-            classNames += " hide";
-        }
-        return classNames;
-    }
+    const ktrGuide = "https://github.com/ijcresse/kantan-reader/blob/develop/GUIDE.md";
 
     return (
         <AuthProvider>
             <div className="rootPane">
                 <div className="topPane">
                     <div className="searchToggle" onClick={() => setNavVisible(!navVisible)}>
-                        toggle search 🔎
+                        toggle searchbox
                     </div>
                     <div className="currentlyReading">
                         { currentChapterData ? "ch " + currentChapterData.chapter + ": " + currentChapterData.title : "" }
                     </div>
-                    <a className="link" href="https://github.com/ijcresse/kantan-reader/blob/develop/GUIDE.md" target="_blank">
+                    <a className="link" href={ktrGuide} target="_blank">
                         Kantan Reader Guide
                     </a>
                     <div className="pageTitle">
@@ -37,7 +31,7 @@ const KantanReader = () => {
                     </div>
                 </div>
                 <div className="bottomPane">
-                    <div className={getNavigatorClass()}>
+                    <div className={navVisible ? "navigator" : "navigator hide"}>
                         <Navigator />
                     </div>
                     <div className="readerContainer">

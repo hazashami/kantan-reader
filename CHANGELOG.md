@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.0.0]
 - [020-match-new-api] mangadex updated! have to update too.
 - [019-visual-layering] toggle search button color matches search box, searchbox has dropshadow to differentiate
 

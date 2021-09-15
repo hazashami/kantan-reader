@@ -29,20 +29,12 @@ const Search = ({ setMangaList }) => {
         )
     }
 
-    const buildSearch = () => {
-        let queryParams = "?title=" + searchStrings.title + "&limit=10";
-        return queryParams;
-    }
-
     const submitSearch = (event) => {
         //todo: put this on an interceptor
         event.preventDefault();
-        const auth = {
-            headers: { Authorization: `Bearer ${bearer}`}
-        }
-        axiosInstance.get(mangadexApi + "/manga" + buildSearch(), auth)
+        axiosInstance.get(mangadexApi + "/manga?title=" + searchStrings.title + "&limit=10")
         .then((response) => {
-            setMangaList(response.data.results);
+            setMangaList(response.data.data);
         })
         .catch((err) => console.error(err.message));
     }

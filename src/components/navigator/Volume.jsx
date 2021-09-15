@@ -42,7 +42,7 @@ const Volume = ({volumeId}) => {
             <div className="chapterContainer">
                 {Object.keys(chapterList).map(chapter => {
                     return(
-                        <Chapter key={"chapter-" + chapterList[chapter].data.id} chapterInfo={chapterList[chapter].data} volumeId={volumeId} />
+                        <Chapter key={"chapter-" + chapterList[chapter].attributes.chapter} chapterInfo={chapterList[chapter]} volumeId={volumeId} />
                     )
                 })}
             </div>

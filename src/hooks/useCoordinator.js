@@ -15,7 +15,7 @@ const useCoordinator = () => {
     const [ chapterList, setChapterList ] = useState();
 
     const fetchVolumes = (mangaTitle) => {
-        axiosInstance.get(mangadexApi + "/manga/" + mangaTitle.data.id + "/aggregate")
+        axiosInstance.get(mangadexApi + "/manga/" + mangaTitle.id + "/aggregate")
         .then((response) => {
             setVolumeList(response.data.volumes);
         })
@@ -26,11 +26,12 @@ const useCoordinator = () => {
         return axiosInstance.get(mangadexApi + "/chapter?manga=" + activeMangaId + buildChapterQuery(volumeList[volumeId].chapters))
             .then((response) => {
                 //force sorting as doubles (decimals get placed last otherwise)
-                const list = response.data.results.sort(function(a, b) {
-                    return Number(a.data.attributes.chapter) - Number(b.data.attributes.chapter);
+                const list = response.data.data.sort(function(a, b) {
+                    return Number(a.attributes.chapter) - Number(b.attributes.chapter);
                 });
-                setChapterList(list);
                 setCurrentChapterList(list);
+                //stores list for non-active volumes in navigation
+                setChapterList(list);
             })
             .catch((err) => console.error(err.message));
     }
@@ -46,21 +47,34 @@ const useCoordinator = () => {
     }
 
     const getNext = (direction) => {
-        const nextPage = currentPage + direction;
-        if (nextPage < currentChapterData.data.length && nextPage >= 0) {
-            setCurrentPage(Number(nextPage));
-        } else {
-            getNextChapter(direction >= 0 ? 1 : -1)
+        if (currentChapterData) {
+            const nextPage = currentPage + direction;
+            if (nextPage < currentChapterData.data.length && nextPage >= 0) {
+                setCurrentPage(Number(nextPage));
+            } else {
+                getNextChapter(direction >= 0 ? 1 : -1)
+            }
         }
     }
 
     const getNextChapter = (direction) => {
-        const chaptersKeys = Object.keys(volumeList[currentVolume].chapters);
-        const nextChapterNum = chaptersKeys.indexOf(currentChapterData.chapter) + direction;
-        if (nextChapterNum < chaptersKeys.length && nextChapterNum >= 0) {
-            setCurrentChapterData(currentChapterList[nextChapterNum].data.attributes);
+        const nextChapterNum = getNextChapterIndex(direction);
+        if (nextChapterNum != -1) {
+            setCurrentChapterData(currentChapterList[nextChapterNum].attributes);
         } else {
-            alert("end of volume " + currentVolume + ", please select next volume");
+            alert("reached one end of volume " + currentVolume + ", please select next volume");
+        }
+    }
+
+    const getNextChapterIndex = (direction) => {
+        for (let i = 0; i < currentChapterList.length ; i++) {
+            if (currentChapterData.chapter == currentChapterList[i].attributes.chapter) {
+                if (i + direction > 0 || i + direction < currentChapterList.length) {
+                    return i + direction;
+                } else {
+                    return -1;
+                }
+            }
         }
     }
 
